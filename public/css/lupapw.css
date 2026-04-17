@@ -1,0 +1,140 @@
+/* public/css/lupapw.css */
+
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/login+logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 1. Ini kuncinya: Full-screen Blur Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Gunakan backdrop-filter untuk membuat full blur */
+    backdrop-filter: blur(30px); /* Nilai blur tinggi kyk target */
+    -webkit-backdrop-filter: blur(30px);
+    /* Sedikit translucent background untuk efek glassmorphism kyk target */
+    background: rgba(255, 255, 255, 0.1); 
+    z-index: 1; /* Di belakang panel form */
+}
+
+/* Logo container di top right kyk target */
+.logo-container {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 3;
+    display: flex;
+    align-items: center; 
+    gap: 12px;
+}
+
+.logo-text {
+    height: 26px; 
+    object-fit: contain;
+}
+
+.logo-icon {
+    height: 40px; 
+    object-fit: contain;
+}
+
+.form-center-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 2; 
+}
+
+.form-center-container {
+    max-width: 480px; 
+    width: 90%;
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 60px 50px; /* Padding luas kyk target */
+    border-radius: 20px; /* Rounded corners kyk target */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-center-container h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px 20px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50px;
+    color: #333;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.form-center-container a {
+    display: block;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+.form-center-container a:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: #2d3a2e; 
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #1f2b20;
+}

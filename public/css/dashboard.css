@@ -1,0 +1,211 @@
+/* public/css/dashboard.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa; /* Warna dasar abu-abu sangat terang */
+    /* Background blob kuning/hijau tipis kyk di desain */
+    background-image: 
+        radial-gradient(circle at 60% 10%, rgba(229, 193, 88, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(165, 182, 112, 0.2) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: #1a1a1a;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   SIDEBAR (Floating & Expandable)
+   ========================================= */
+.sidebar {
+    background-color: #A7B774; /* Warna hijau olive */
+    margin: 20px 0 20px 20px;
+    border-radius: 20px;
+    width: 80px; /* Lebar default (Collapsed) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 0;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden; /* Sembunyikan teks saat mengecil */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    z-index: 50;
+}
+
+/* Efek saat mouse diarahkan ke sidebar (Expanded) */
+.sidebar:hover {
+    width: 260px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+    white-space: nowrap; /* Biar teks gak turun ke bawah */
+}
+
+/* Lingkaran Ikon Default */
+.icon-circle {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2D3A2E; /* Hijau gelap */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+    transition: background-color 0.3s;
+}
+
+.icon-circle img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Menu Aktif (Warna Kuning) */
+.menu-item.active .icon-circle {
+    background-color: #DFB744; 
+}
+
+.menu-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.menu-item.active .menu-text {
+    color: #2D3A2E; /* Teks hijau gelap untuk menu aktif */
+}
+
+/* Teks dan sub-teks (kyk di menu dashboard) */
+.menu-text small {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+/* Munculkan teks saat sidebar membesar */
+.sidebar:hover .menu-text {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* Tombol Logout ditaruh paling bawah */
+.logout-form {
+    margin-top: auto; /* Dorong ke bawah */
+    width: 100%;
+}
+.btn-logout {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+.main-content {
+    flex: 1;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.user-info h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.user-info p {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-logo img {
+    height: 35px;
+}
+
+/* Greeting & Judul */
+.greeting {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-subtitle {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 16px;
+}
+
+.card-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0A3D2C; /* Hijau gelap khas angka uang */
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.card-trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.trend-up { color: #22c55e; }
+.trend-down { color: #ef4444; }
