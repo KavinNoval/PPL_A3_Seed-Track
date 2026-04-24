@@ -26,37 +26,19 @@
         <div class="grid-fitur">
             <a href="#" class="fitur-card">
                 <div class="icon-circle">
-                    <img src="{{ asset('images/dashboardgudang/katalogg.png') }}" alt="Katalog">
+                    <img src="{{ asset('images/dashboardlapang/Vector.png') }}" alt="Monitoring">
                 </div>
                 <div class="fitur-text">
-                    <h4>Katalog Produk</h4>
-                </div>
-            </a>
-
-            <a href="#" class="fitur-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('images/dashboardgudang/catattransaksi.png') }}" alt="Transaksi">
-                </div>
-                <div class="fitur-text">
-                    <h4>Pencatatan Transaksi</h4>
+                    <h4>Monitoring</h4>
                 </div>
             </a>
 
             <a href="{{ route('kios.gudang') }}" class="fitur-card">
                 <div class="icon-circle">
-                    <img src="{{ asset('images/dashboardgudang/datakios.png') }}" alt="Data Mitra">
+                    <img src="{{ asset('images/keperluandashboard/datadata.png') }}" alt="Data Mitra">
                 </div>
                 <div class="fitur-text">
                     <h4>Data Mitra</h4>
-                </div>
-            </a>
-
-            <a href="#" class="fitur-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('images/dashboardgudang/pengeluaran.png') }}" alt="Pengeluaran">
-                </div>
-                <div class="fitur-text">
-                    <h4>Pengeluaran Operasional</h4>
                 </div>
             </a>
         </div>

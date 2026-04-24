@@ -1,0 +1,31 @@
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #ffffff; padding: 40px; color: #333; }
+    
+    /* HEADER CONTAINER */
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .header-left { display: flex; align-items: center; gap: 20px; }
+    
+    .btn-back { width: 50px; height: 50px; background-color: #3b5220; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-size: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    .btn-back:hover { background-color: #2c3e18; }
+    
+    .search-box { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 10px; padding: 10px 15px; width: 350px; }
+    .search-box svg { color: #888; margin-right: 10px; }
+    .search-box input { border: none; outline: none; width: 100%; font-size: 15px; }
+    
+    .btn-filter { display: flex; align-items: center; gap: 8px; border: 1px solid #ddd; background: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 15px; color: #555; }
+    
+    .header-right { display: flex; align-items: center; gap: 15px; font-weight: 700; font-size: 20px; }
+    .header-right img { height: 45px; }
+
+    /* KIOS GRID */
+    .kios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px; }
+    .kios-card { background-color: #eef2e6; border-radius: 15px; border: 1px solid #dce4d0; padding: 4px; display: flex; flex-direction: column;}
+    
+    .kios-card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; font-weight: 600; color: #000; font-size: 16px;}
+    .kios-card-header-left { display: flex; align-items: center; gap: 10px; }
+    
+    .kios-card-body { background-color: #ffffff; margin: 0 2px 2px 2px; border-radius: 12px; padding: 20px 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; font-weight: 500;}
+
+    .fab-add { position: fixed; bottom: 50px; right: 50px; width: 70px; height: 70px; background-color: #e2c140; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 40px; text-decoration: none; box-shadow: 0 5px 15px rgba(226, 193, 64, 0.4); font-weight: 300;}
+    .fab-add:hover { background-color: #d1b138; }

@@ -1,4 +1,3 @@
-/* public/css/dashboard.css */
 * {
     margin: 0;
     padding: 0;
@@ -7,9 +6,8 @@
 }
 
 body {
-    background-color: #f8f9fa; /* Warna dasar abu-abu sangat terang */
-    /* Background blob kuning/hijau tipis kyk di desain */
-    background-image: 
+    background-color: #f8f9fa;
+    background-image:
         radial-gradient(circle at 60% 10%, rgba(229, 193, 88, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 90% 90%, rgba(165, 182, 112, 0.2) 0%, transparent 50%);
     background-attachment: fixed;
@@ -19,25 +17,24 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================================
-   SIDEBAR (Floating & Expandable)
-   ========================================= */
+
 .sidebar {
-    background-color: #A7B774; /* Warna hijau olive */
+    background-color: #A7B774;
     margin: 20px 0 20px 20px;
     border-radius: 20px;
-    width: 80px; /* Lebar default (Collapsed) */
+    width: 80px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 30px 0;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden; /* Sembunyikan teks saat mengecil */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    /*ini ngecilin */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     z-index: 50;
 }
 
-/* Efek saat mouse diarahkan ke sidebar (Expanded) */
+/* melebar pas di hover */
 .sidebar:hover {
     width: 260px;
 }
@@ -51,7 +48,8 @@ body {
     color: white;
     margin-bottom: 8px;
     transition: all 0.3s;
-    white-space: nowrap; /* Biar teks gak turun ke bawah */
+    white-space: nowrap;
+    /* Biar teks gak turun ke bawah */
 }
 
 /* Lingkaran Ikon Default */
@@ -59,7 +57,8 @@ body {
     min-width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #2D3A2E; /* Hijau gelap */
+    background-color: #2D3A2E;
+    /* Hijau gelap */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,9 +72,9 @@ body {
     object-fit: contain;
 }
 
-/* Menu Aktif (Warna Kuning) */
+/* kalo dipencet jadi kuning*/
 .menu-item.active .icon-circle {
-    background-color: #DFB744; 
+    background-color: #DFB744;
 }
 
 .menu-text {
@@ -86,10 +85,9 @@ body {
 }
 
 .menu-item.active .menu-text {
-    color: #2D3A2E; /* Teks hijau gelap untuk menu aktif */
+    color: #2D3A2E;
 }
 
-/* Teks dan sub-teks (kyk di menu dashboard) */
 .menu-text small {
     display: block;
     font-size: 0.65rem;
@@ -97,17 +95,17 @@ body {
     margin-top: 2px;
 }
 
-/* Munculkan teks saat sidebar membesar */
 .sidebar:hover .menu-text {
     opacity: 1;
     transition-delay: 0.1s;
 }
 
-/* Tombol Logout ditaruh paling bawah */
+
 .logout-form {
-    margin-top: auto; /* Dorong ke bawah */
+    margin-top: auto;
     width: 100%;
 }
+
 .btn-logout {
     background: transparent;
     border: none;
@@ -115,9 +113,7 @@ body {
     text-align: left;
 }
 
-/* =========================================
-   MAIN CONTENT
-   ========================================= */
+
 .main-content {
     flex: 1;
     padding: 30px 50px;
@@ -153,7 +149,7 @@ body {
     height: 35px;
 }
 
-/* Greeting & Judul */
+
 .greeting {
     font-size: 1.4rem;
     font-weight: 600;
@@ -166,7 +162,6 @@ body {
     margin-bottom: 20px;
 }
 
-
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,8 +172,8 @@ body {
     background: white;
     padding: 24px;
     border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    border: 1px solid rgba(0,0,0,0.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 .card-title {
@@ -196,7 +191,7 @@ body {
 .card-value {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #0A3D2C; /* Hijau gelap khas angka uang */
+    color: #0A3D2C;
     display: flex;
     align-items: baseline;
     gap: 10px;
@@ -207,5 +202,109 @@ body {
     font-weight: 600;
 }
 
-.trend-up { color: #22c55e; }
-.trend-down { color: #ef4444; }
+.trend-up {
+    color: #22c55e;
+}
+
+.trend-down {
+    color: #ef4444;
+}
+
+.topbar-staf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.top-action-bar {
+    display: flex;
+    gap: 15px;
+}
+
+.search-input {
+    padding: 12px 15px 12px 40px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: 300px;
+    outline: none;
+}
+
+.btn-filter {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.staff-card {
+    background: #e5ecd9;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.staff-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.staff-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.staff-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.staff-badge {
+    background: #a5f3b7;
+    color: #0a3d2c;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.staff-body {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 0.9rem;
+    line-height: 2;
+}
+
+.fab-add {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 65px;
+    height: 65px;
+    background: #dfb744;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 35px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.fab-add:hover {
+    background: #cda533;
+}

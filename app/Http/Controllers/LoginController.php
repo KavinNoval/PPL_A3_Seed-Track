@@ -3,64 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Menampilkan halaman form login.
-     */
     public function showLoginForm()
     {
         return view('login');
     }
 
-    /**
-     * Memproses data login dan cek role.
-     */
     public function login(Request $request)
     {
         $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required'],
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('username', $request->username)
+                    ->where('password', $request->password)
+                    ->first();
 
-        // Pengecekan tanpa hashing
-        if ($user && $user->password === $request->password) {
+        if ($user) {
             Auth::login($user);
-            $request->session()->regenerate();
-
-            // Pengecekan Role 
-            $role = strtolower($user->role); // Jadikan huruf kecil untuk pencocokan
-
-            if ($role === 'admin') {
-                return redirect()->intended('/dashboard-admin');
-            } elseif ($role === 'staf lapang') {
-                return redirect()->intended('/dashboard-lapang');
-            } elseif ($role === 'staf gudang') {
-                return redirect()->intended('/dashboard-gudang');
-            } else {
-                // Default kalau role tidak ada/tidak cocok
-                return redirect()->intended('/dashboard');
+            if ($user->role == 'Admin') {
+                return redirect()->route('dashboard.admin');
+            } elseif ($user->role == 'Staff Gudang' || $user->role == 'Staf Gudang') {
+                return redirect()->route('dashboard.gudang');
+            } elseif ($user->role == 'Staff Lapang' || $user->role == 'Staf Lapang') {
+                return redirect()->route('dashboard.lapang');
             }
+
+            // Default
+            return redirect()->route('dashboard.admin');
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password yang Anda masukkan salah.',
-        ])->onlyInput('username');
+        return back()->with('error', 'Username atau Password salah brok!');
     }
 
-    // logout
+    // Proses logout
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
+        
         return redirect('/login');
     }
 }

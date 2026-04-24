@@ -9,13 +9,12 @@ class ControllerLupaPW extends Controller
 {
     public function showResetForm()
     {
-        // Pastikan file view kamu ada di folder resources/views/auth/lupapw.blade.php
         return view('lupapw'); 
     }
 
     public function update(Request $request)
     {
-        // 1. Validasi input
+        // validasi input
         $request->validate([
             'username' => ['required', 'string', 'exists:data_akun,username'],
             'password' => ['required', 'string', 'confirmed'],
@@ -24,14 +23,14 @@ class ControllerLupaPW extends Controller
             'password.confirmed' => 'Konfirmasi password tidak cocok.'
         ]);
 
-        // 2. Cari user berdasarkan username
+        // cari user
         $user = User::where('username', $request->username)->first();
 
-        // 3. Update password (tanpa hashing)
+        // update
         $user->password = $request->password;
         $user->save();
 
-        // 4. Balikkan ke halaman login dengan pesan sukses
+        // balik ke login
         return redirect()->route('login')->with('status', 'Password berhasil diubah! Silakan login.');
     }
 }

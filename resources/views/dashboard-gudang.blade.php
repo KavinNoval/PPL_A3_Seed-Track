@@ -44,10 +44,10 @@
 
             <a href="{{ route('kios.gudang') }}" class="fitur-card">
                 <div class="icon-circle">
-                    <img src="{{ asset('images/dashboardgudang/datakios.png') }}" alt="Data Mitra">
+                    <img src="{{ asset('images/dashboardgudang/datakios.png') }}" alt="Data Kios">
                 </div>
                 <div class="fitur-text">
-                    <h4>Data Mitra</h4>
+                    <h4>Data Kios</h4>
                 </div>
             </a>
 

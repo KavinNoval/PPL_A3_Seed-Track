@@ -74,12 +74,9 @@
                     </div>
                 </div>
 
-                {{-- Ubah Password? --}}
                 <div class="forgot-section">
                     <a href="{{ route('password.request') }}" class="forgot-link">Ubah Password?</a>
                 </div>
-
-                {{-- Submit Button --}}
                 <button type="submit" class="btn-login" id="btnLogin">
                     <span>Login</span>
                 </button>
