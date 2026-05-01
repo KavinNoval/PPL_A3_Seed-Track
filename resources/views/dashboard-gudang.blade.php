@@ -22,7 +22,6 @@
 
     <div class="fitur-section">
         <h3>Fitur-Fitur</h3>
-        
         <div class="grid-fitur">
             <a href="#" class="fitur-card">
                 <div class="icon-circle">
@@ -62,12 +61,22 @@
         </div>
     </div>
 
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit" class="logout-btn">
-            <img src="{{ asset('images/keperluandashboard/logout.png') }}" alt="Logout">
-        </button>
+    <form action="{{ route('logout') }}" method="POST" id="formLogout">
+    @csrf
+    <button type="button" id="btnLogoutTrigger" class="logout-btn">
+        <img src="{{ asset('images/keperluandashboard/logout.png') }}" alt="Logout">
+    </button>
     </form>
-
+        
+        <div id="modalLogout" class="modal-overlay" style="display: none;">
+            <div class="modal-box">
+                <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
+                <div class="modal-buttons">
+            <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
+            <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
+                </div>
+            </div>
+        </div>
 </body>
+<script src="{{ asset('js/logout.js') }}"></script>
 </html>

@@ -13,5 +13,11 @@ class ControllerStaf extends Controller
         
         return view('datakios-gudang', compact('kios'));
     }
+
+    public function dataMitraLapang()
+    {
+        $mitra = DB::table('data_mitra')->get(); 
+        return view('datamitra-lapang', compact('mitra'));
+    }
     
 }

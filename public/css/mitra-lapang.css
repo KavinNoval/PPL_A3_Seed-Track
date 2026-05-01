@@ -1,0 +1,120 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: #ffffff; padding: 40px; color: #333; }
+
+.topbar-staf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.top-action-bar { display: flex; gap: 15px; }
+
+.search-input { 
+    padding: 12px 20px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    width: 300px; 
+    outline: none; 
+    font-size: 15px;
+}
+
+.btn-filter { 
+    padding: 12px 25px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    background: white; 
+    cursor: pointer; 
+    font-weight: 600;
+    color: #555;
+    transition: 0.3s;
+}
+.btn-filter:hover { background: #f0f0f0; }
+
+.topbar-logo { display: flex; align-items: center; gap: 15px; }
+.topbar-logo img { height: 45px; }
+
+.staff-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+    gap: 20px; 
+}
+
+.staff-card { 
+    background-color: #eef2e6; 
+    border-radius: 15px; 
+    border: 1px solid #dce4d0; 
+    padding: 4px; 
+    display: flex; 
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+.staff-card:hover { transform: translateY(-5px); }
+
+.staff-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 12px 15px; 
+    font-weight: 600; 
+    color: #000; 
+    font-size: 16px;
+}
+
+.staff-header-left { display: flex; align-items: center; gap: 10px; }
+
+.staff-body { 
+    background-color: #ffffff; 
+    margin: 0 2px 2px 2px; 
+    border-radius: 12px; 
+    padding: 20px 15px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    font-size: 14px;
+}
+
+.staff-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 1px dashed #eee; 
+    padding-bottom: 8px;
+}
+.staff-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.staff-label { color: #888; font-weight: 400; }
+.staff-value { font-weight: 600; color: #1a1a1a; text-align: right; max-width: 60%; }
+
+.fab-add { 
+    position: fixed; 
+    bottom: 50px; 
+    right: 50px; 
+    width: 70px; 
+    height: 70px; 
+    background-color: #e2c140; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    font-size: 40px; 
+    text-decoration: none; 
+    box-shadow: 0 5px 15px rgba(226, 193, 64, 0.4); 
+    font-weight: 300;
+    transition: 0.3s;
+}
+.fab-add:hover { transform: scale(1.1); background-color: #d1b138; }
+
+.btn-back { 
+    width: 50px; 
+    height: 50px; 
+    background-color: #2D3A2E;
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    text-decoration: none; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+    transition: 0.3s; 
+}
+
+.btn-back:hover { 
+    background-color: #1f2820; 
+    transform: scale(1.05); 
+}

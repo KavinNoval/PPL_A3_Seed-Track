@@ -14,42 +14,59 @@
     
     <div class="content-form">
         <a href="{{ route('data.kios') }}" class="btn-back">&larr;</a>
-        
-        <form action="{{ route('updatekios', $kios->id_pelanggan) }}" method="POST" class="form-card">
+        <form action="{{ route('updatekios', $kios->id_kios) }}" method="POST" class="form-card" id="formEditKios">
             @csrf
             <div class="form-grid">
                 <div class="form-group">
-                    <label>Kelurahan</label>
-                    <select name="id_kelurahan" required>
-                        <option value="">Pilih Kelurahan</option>
-                        <option value="1" {{ $kios->id_kelurahan == 1 ? 'selected' : '' }}>Sumbersari</option>
-                        <option value="2" {{ $kios->id_kelurahan == 2 ? 'selected' : '' }}>Patrang</option>
-                        <option value="3" {{ $kios->id_kelurahan == 3 ? 'selected' : '' }}>Kaliwates</option>
-                    </select>
+                    <label class="wajib-isi">Nama Kios</label>
+                    <input type="text" name="nama_kios" value="{{ old('nama_kios') ?? $kios->nama_kios }}" required
+                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" oninput="this.setCustomValidity('')">
+                    @error('nama_kios') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
+
                 <div class="form-group">
-                    <label>Nama Kios</label>
-                    <input type="text" name="nama_kios" value="{{ $kios->nama_kios }}" required>
+                    <label class="wajib-isi">Nama Pemilik</label>
+                    <input type="text" name="nama_pemilik" value="{{ old('nama_pemilik') ?? $kios->nama_pemilik }}" required
+                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" oninput="this.setCustomValidity('')">
+                    @error('nama_pemilik') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
+
                 <div class="form-group">
-                    <label>Nama Pemilik</label>
-                    <input type="text" name="nama_pemilik" value="{{ $kios->nama_pemilik }}" required>
+                    <label class="wajib-isi">Nomor Telepon</label>
+                    <input type="text" name="no_telp" value="{{ old('no_telp') ?? $kios->no_telp }}" required
+                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" oninput="this.setCustomValidity('')">
+                    @error('no_telp') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
+
                 <div class="form-group">
-                    <label>Nomor Telepon</label>
-                    <input type="text" name="no_telp" value="{{ $kios->no_telp }}">
+                    <label class="wajib-isi">Alamat Kios</label>
+                    <input type="text" name="alamat_kios" value="{{ old('alamat_kios') ?? $kios->alamat_kios }}" required
+                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" oninput="this.setCustomValidity('')">
+                    @error('alamat_kios') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
+
                 <div class="form-group">
-                    <label>Alamat Kios</label>
-                    <input type="text" name="alamat_kios" value="{{ $kios->alamat_kios }}">
+                    <label class="wajib-isi">NIB</label>
+                    <input type="text" name="NIB" value="{{ old('NIB') ?? $kios->NIB }}" required
+                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" oninput="this.setCustomValidity('')">
+                    @error('NIB') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
-                <div class="form-group">
-                    <label>NIB</label>
-                    <input type="text" name="NIB" value="{{ $kios->NIB }}">
-                </div>
-                <button type="submit" class="btn-simpan">SIMPAN</button>
+                
+                <button type="submit" class="btn-simpan" style="width: 100%;">SIMPAN PERUBAHAN</button>
             </div>
         </form>
     </div>
+
+    <div id="modalKonfirmasiEdit" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <p>Apakah ingin menyimpan perubahan?</p>
+            <div class="modal-buttons">
+                <button type="button" class="btn-modal btn-ya" id="btnYaEdit">Ya</button>
+                <button type="button" class="btn-modal btn-batal" id="btnBatalEdit" onclick="window.location.href='{{ route('batal.kios') }}'">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/modal-edit.js') }}"></script>
 </body>
 </html>

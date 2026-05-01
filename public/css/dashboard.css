@@ -308,3 +308,140 @@ body {
 .fab-add:hover {
     background: #cda533;
 }
+
+/* Container Overlay */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kotak Putih Modal */
+.modal-box {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 35px;
+    width: 90%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-box p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #000;
+    line-height: 1.4;
+}
+
+/* Container Tombol */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.btn-modal {
+    padding: 15px 0;
+    min-width: 160px; 
+    border-radius: 50px; 
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-ya {
+    background-color: #39FF14;
+    color: black;
+}
+
+.btn-batal {
+    background-color: #FF0000;
+    color: white;
+}
+
+.btn-modal:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000; /* Biar selalu di paling depan nutupin sidebar & konten */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kotak putih pop-up */
+.modal-box {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 35px; /* Bikin ujungnya melengkung halus */
+    width: 90%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-box p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #000;
+    line-height: 1.4;
+}
+
+/* Penjajaran tombol biar sejajar */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Gaya dasar tombol (Pill-shaped) */
+.btn-modal {
+    padding: 15px 0;
+    min-width: 160px; /* Biar tombolnya lebar dan sama rata */
+    border-radius: 50px; /* Bikin bentuk lonjong kayak kapsul */
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Tombol Yakin (Hijau Stabilo) */
+.btn-ya {
+    background-color: #39FF14;
+    color: black;
+}
+
+/* Tombol Batal (Merah) */
+.btn-batal {
+    background-color: #FF0000;
+    color: white;
+}
+
+/* Animasi kalau kena kursor */
+.btn-modal:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+/* Animasi kalau diklik */
+.btn-modal:active {
+    transform: scale(0.95);
+}

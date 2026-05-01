@@ -14,36 +14,49 @@
 
     <div class="content-form">
         <a href="{{ route('data.staf') }}" class="btn-back">&larr;</a>
-        <form action="{{ route('rubahstaf') }}" method="POST" class="form-card">
+        
+        <form action="{{ route('rubahstaf') }}" method="POST" class="form-card" id="formTambahStaf">
             @csrf
             <div class="form-grid">
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="Masukkan Username" required>
+                    <label class="wajib-isi">Username</label>
+                    <input type="text" name="username" placeholder="Masukkan Username" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="text" name="password" placeholder="Masukkan Password" required>
+                    <label class="wajib-isi">Password</label>
+                    <input type="text" name="password" placeholder="Masukkan Password" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" required>
+                    <label class="wajib-isi">Nama Lengkap</label>
+                    <input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
-                    <label>Nomor Telepon</label>
-                    <input type="text" name="no_telp" placeholder="Masukkan Nomor Telepon" required>
+                    <label class="wajib-isi">Nomor Telepon</label>
+                    <input type="text" name="no_telp" placeholder="Masukkan Nomor Telepon" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
-                    <label>Role</label>
-                    <select name="role" required>
+                    <label class="wajib-isi">Role</label>
+                    <select name="role" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                         <option value="">Pilih Role</option>
                         <option value="Staff Lapang">Staf Lapang</option>
                         <option value="Staff Gudang">Staf Gudang</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
-                    <select name="status" required>
+                    <label class="wajib-isi">Status</label>
+                    <select name="status" required
+                    oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
+                    oninput="this.setCustomValidity('')">
                         <option value="">Masukkan Status</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Non Aktif">Non Aktif</option>
@@ -53,5 +66,17 @@
             </div>
         </form>
     </div>
+
+    <div id="modalKonfirmasi" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <p>Apakah ingin menambah staf?</p>
+            <div class="modal-buttons">
+                <button type="button" class="btn-modal btn-ya" id="btnYa">Ya</button>
+                <button type="button" class="btn-modal btn-batal" onclick="window.location.href='{{ route('data.staf') }}?status=batal_tambah'">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/modal-staf.js') }}"></script>
 </body>
 </html>

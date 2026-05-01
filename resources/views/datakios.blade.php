@@ -8,6 +8,83 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
 <body>
+    <div class="sidebar">
+        <a href="{{ route('dashboard.admin') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/dashboardlg.png') }}" alt="Dashboard">
+            </div>
+            <div class="menu-text">
+                Dashboard
+                <small>Laporan & Monitoring</small>
+            </div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/profilperusahaan.png') }}" alt="Profil">
+            </div>
+            <div class="menu-text">Profil Perusahaan</div>
+        </a>
+
+        <a href="{{ route('data.staf') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/datadata.png') }}" alt="Staf">
+            </div>
+            <div class="menu-text">Data Staf</div>
+        </a>
+
+        <a href="{{ route('data.mitra') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/datadata.png') }}" alt="Mitra">
+            </div>
+            <div class="menu-text">Data Mitra</div>
+        </a>
+
+        <a href="{{ route('data.kios') }}" class="menu-item active">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/datadata.png') }}" alt="Kios">
+            </div>
+            <div class="menu-text">Data Kios</div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/katalogg.png') }}" alt="Katalog">
+            </div>
+            <div class="menu-text">Katalog Produk</div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/monitoring.png') }}" alt="Monitoring">
+            </div>
+            <div class="menu-text">Monitoring Lahan</div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/transaksi.png') }}" alt="Transaksi">
+            </div>
+            <div class="menu-text">Transaksi</div>
+        </a>
+
+        <a href="#" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/pengeluaran.png') }}" alt="Pengeluaran">
+            </div>
+            <div class="menu-text">Pengeluaran</div>
+        </a>
+
+        <form action="{{ route('logout') }}" method="POST" id="formLogout" class="logout-form">
+            @csrf
+            <button type="button" class="menu-item btn-logout" id="btnLogoutTrigger">
+                <div class="icon-circle">
+                    <img src="{{ url('images/keperluandashboard/logout.png') }}" alt="Logout">
+                </div>
+                <div class="menu-text">Logout</div>
+            </button>
+        </form>
+    </div>
 
     <main class="main-content">
         <header class="topbar-staf">
@@ -21,6 +98,24 @@
             </div>
         </header>
 
+        @if(session('success'))
+            <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(request('status') == 'batal')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Proses edit data Kios dibatalkan!
+            </div>
+        @endif
+
+        @if(request('status') == 'batal_tambah')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Proses tambah data Kios dibatalkan!
+            </div>
+        @endif
+
         <div class="staff-grid">
             @foreach($kios as $k)
             <div class="staff-card">
@@ -30,7 +125,7 @@
                         Kios
                     </div>
                     <div class="staff-header-right">
-                        <a href="{{ route('editkios', $k->id_pelanggan) }}">
+                        <a href="{{ route('editkios', $k->id_kios) }}">
                             <img src="{{ asset('images/keperluandashboard/tabler_edit.png') }}" alt="Edit" style="width: 20px; height: 20px; object-fit: contain;">
                         </a>
                     </div>
@@ -47,8 +142,18 @@
         </div>
 
         <a href="{{ route('tambahinkios') }}" class="fab-add">+</a>
-
     </main>
 
+    <div id="modalLogout" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
+            <div class="modal-buttons">
+                <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
+                <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('js/logout.js') }}"></script>
+    <script src="{{ asset('js/notif.js') }}"></script>
 </body>
-</html>
+</html> 

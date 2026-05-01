@@ -18,29 +18,46 @@
         <div class="form-center-container">
             <h1>Ubah Password</h1>
 
+            @if (session('success'))
+                <div style="background-color: #48bb78; color: white; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; text-align: center; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    {{ session('success') }}
+                </div>
+            @endif
             @if ($errors->any())
                 <div class="alert-error" style="background: rgba(239, 68, 68, 0.9); color: white; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; text-align: left;">
                     {{ $errors->first() }}
                 </div>
             @endif
 
-            {{-- Form input --}}
             <form action="{{ route('password.update') }}" method="POST">
                 @csrf
                 
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" required>
+                    <label class="wajib-isi">Username</label>
+                    <input type="text" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" required
+                           oninvalid="this.setCustomValidity('Harap isi semua data')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+
+                <div class="form-group">
+                    <label class="wajib-isi">Password Lama</label>
+                    <input type="password" name="current_password" placeholder="Masukkan Password Lama" required
+                           oninvalid="this.setCustomValidity('Harap isi semua data')"
+                           oninput="this.setCustomValidity('')">
                 </div>
                 
                 <div class="form-group">
-                    <label>Password Baru</label>
-                    <input type="password" name="password" placeholder="Masukkan Password Baru" required>
+                    <label class="wajib-isi">Password Baru</label>
+                    <input type="password" name="password" placeholder="Masukkan Password Baru" required
+                           oninvalid="this.setCustomValidity('Harap isi semua data')"
+                           oninput="this.setCustomValidity('')">
                 </div>
                 
                 <div class="form-group">
-                    <label>Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" placeholder="Masukkan Password" required>
+                    <label class="wajib-isi">Konfirmasi Password</label>
+                    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password Baru" required
+                           oninvalid="this.setCustomValidity('Harap isi semua data')"
+                           oninput="this.setCustomValidity('')">
                 </div>
                 
                 <a href="{{ route('login') }}">Kembali ke Login?</a>

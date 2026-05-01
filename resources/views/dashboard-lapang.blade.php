@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Utama - Staf Gudang</title>
+    <title>Halaman Utama - Staf Lapang</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard-gudang.css') }}">
 </head>
@@ -33,7 +33,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('kios.gudang') }}" class="fitur-card">
+            <a href="{{ route('mitra.lapang') }}" class="fitur-card">
                 <div class="icon-circle">
                     <img src="{{ asset('images/keperluandashboard/datadata.png') }}" alt="Data Mitra">
                 </div>
@@ -44,12 +44,23 @@
         </div>
     </div>
 
-    <form action="{{ route('logout') }}" method="POST">
+    <form action="{{ route('logout') }}" method="POST" id="formLogout">
         @csrf
-        <button type="submit" class="logout-btn">
+        <button type="button" id="btnLogoutTrigger" class="logout-btn">
             <img src="{{ asset('images/keperluandashboard/logout.png') }}" alt="Logout">
         </button>
     </form>
+        
+    <div id="modalLogout" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
+            <div class="modal-buttons">
+                <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
+                <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
+            </div>
+        </div>
+    </div>
 
 </body>
+<script src="{{ asset('js/logout.js') }}"></script>
 </html>

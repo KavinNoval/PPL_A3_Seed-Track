@@ -13,24 +13,26 @@ class ControllerLupaPW extends Controller
     }
 
     public function update(Request $request)
-    {
-        // validasi input
-        $request->validate([
-            'username' => ['required', 'string', 'exists:data_akun,username'],
-            'password' => ['required', 'string', 'confirmed'],
-        ], [
-            'username.exists' => 'Username tidak ditemukan di dalam sistem.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.'
-        ]);
+{
+    $request->validate([
+        'username' => ['required', 'string', 'exists:data_akun,username'],
+        'current_password' => ['required', 'string'],
+        'password' => ['required', 'string', 'confirmed'],
+    ], [
+        'username.exists' => 'Username tidak terdaftar!',
+        'password.confirmed' => 'Konfirmasi password baru tidak cocok.'
+    ]);
 
-        // cari user
-        $user = User::where('username', $request->username)->first();
+    $user = \DB::table('data_akun')->where('username', $request->username)->first();
 
-        // update
-        $user->password = $request->password;
-        $user->save();
-
-        // balik ke login
-        return redirect()->route('login')->with('status', 'Password berhasil diubah! Silakan login.');
+    if ($request->current_password != $user->password) {
+        return back()->withErrors(['current_password' => 'Password lama salah!']);
     }
+
+    \DB::table('data_akun')
+        ->where('username', $request->username)
+        ->update(['password' => $request->password]);
+
+    return redirect()->route('login')->with('success', 'Password berhasil diubah! Silakan login.');
+}
 }

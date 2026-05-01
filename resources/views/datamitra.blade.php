@@ -12,7 +12,7 @@
 <aside class="sidebar">
     <a href="{{ route('dashboard.admin') }}" class="menu-item">
         <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/datadata.png') }}" alt="Dashboard">
+            <img src="{{ asset('images/keperluandashboard/dashboardlg.png') }}" alt="Dashboard">
         </div>
         <div class="menu-text">
             Dashboard
@@ -76,15 +76,23 @@
         <div class="menu-text">Pengeluaran</div>
     </a>
 
-    <form action="{{ route('logout') }}" method="POST" class="logout-form">
-        @csrf
-        <button type="submit" class="menu-item btn-logout">
-            <div class="icon-circle">
-                <img src="{{ asset('images/keperluandashboard/logout.png') }}" alt="Logout">
-            </div>
-            <div class="menu-text">Logout</div>
-        </button>
-    </form>
+    <form action="{{ route('logout') }}" method="POST" id="formLogout" class="logout-form">
+            @csrf
+            <button type="button" class="menu-item btn-logout" id="btnLogoutTrigger">
+                <div class="icon-circle">
+                    <img src="{{ url('images/keperluandashboard/logout.png') }}" alt="Logout">
+                </div>
+                <div class="menu-text">Logout</div>
+            </button>
+        </form>
+        
+        <div id="modalLogout" class="modal-overlay" style="display: none;">
+            <div class="modal-box">
+                <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
+                <div class="modal-buttons">
+            <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
+            <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
+        </div>
 </aside>
 
 <main class="main-content">
@@ -99,6 +107,24 @@
         </div>
     </header>
 
+    @if(session('success'))
+            <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(request('status') == 'batal')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Data mitra batal diubah
+            </div>
+        @endif
+
+        @if(request('status') == 'batal_tambah')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Data mitra batal disimpan
+            </div>
+        @endif
+
     <div class="staff-grid">
         @foreach($mitra as $m)
         <div class="staff-card">
@@ -108,20 +134,45 @@
                     Mitra
                 </div>
                 <div class="staff-header-right">
-                    <a href="{{ route('editmitra', $m->id_pelanggan) }}">
+                    <a href="{{ route('editmitra', $m->id_mitra) }}">
                         <img src="{{ asset('images/keperluandashboard/tabler_edit.png') }}" alt="Edit" style="width: 20px; height: 20px; object-fit: contain;">
                     </a>
                 </div>
             </div>
+
             <div class="staff-body">
-                <div>Nama Mitra : {{ $m->nama_mitra ?? '-' }}</div>
-                <div>Nomor Telepon : {{ $m->no_telp ?? '-' }}</div>
-                <div>Jalan Lahan : {{ $m->jalan_lahan ?? '-' }}</div>
-                <div>Blok Sawah : {{ $m->blok_sawah ?? '-' }}</div>
-                <div>Luas Lahan : {{ $m->luas_lahan ?? '-' }}</div>
-                <div>Est. Jumlah Panen : {{ $m->est_jmlh_panen ?? '-' }}</div>
-                <div>Est. Benih : {{ $m->est_benih ?? '-' }}</div>
-                <div>Tanggal Bergabung : {{ $m->tgl_bergabung ?? '-' }}</div>
+                <div class="staff-row">
+                    <span class="staff-label">Nama Mitra :</span>
+                    <span class="staff-value">{{ $m->nama_mitra ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Nomor Telepon :</span>
+                    <span class="staff-value">{{ $m->no_telp ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Jalan Lahan :</span>
+                    <span class="staff-value">{{ $m->jalan_lahan ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Blok Sawah :</span>
+                    <span class="staff-value">{{ $m->blok_sawah ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Luas Lahan :</span>
+                    <span class="staff-value">{{ $m->luas_lahan ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Est. Jumlah Panen :</span>
+                    <span class="staff-value">{{ $m->est_jmlh_panen ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Est. Benih :</span>
+                    <span class="staff-value">{{ $m->est_benih ?? '-' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Tanggal Bergabung :</span>
+                    <span class="staff-value">{{ $m->tgl_bergabung ?? '-' }}</span>
+                </div>
             </div>
         </div>
         @endforeach
@@ -129,6 +180,7 @@
 
     <a href="{{ route('tambahinmitra') }}" class="fab-add">+</a>
 </main>
-
+<script src="{{ asset('js/logout.js') }}"></script>
+<script src="{{ asset('js/notif.js') }}"></script>
 </body>
 </html>

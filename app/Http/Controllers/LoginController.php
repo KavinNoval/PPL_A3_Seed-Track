@@ -20,28 +20,28 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('username', $request->username)
-                    ->where('password', $request->password)
-                    ->first();
+        #cek udah terdaftar apa engga
+        $user = User::where('username', $request->username)->first();
 
-        if ($user) {
-            Auth::login($user);
-            if ($user->role == 'Admin') {
-                return redirect()->route('dashboard.admin');
-            } elseif ($user->role == 'Staff Gudang' || $user->role == 'Staf Gudang') {
-                return redirect()->route('dashboard.gudang');
-            } elseif ($user->role == 'Staff Lapang' || $user->role == 'Staf Lapang') {
-                return redirect()->route('dashboard.lapang');
-            }
-
-            // Default
-            return redirect()->route('dashboard.admin');
+        if (!$user) {
+            return back()->with('error', 'Akun belum terdaftar!');
         }
 
-        return back()->with('error', 'Username atau Password salah brok!');
+        if ($user->password !== $request->password) {
+            return back()->with('error', 'Password salah!');
+        }
+        Auth::login($user);
+        
+        if ($user->role == 'Admin') {
+            return redirect()->route('dashboard.admin');
+        } elseif ($user->role == 'Staff Gudang' || $user->role == 'Staf Gudang') {
+            return redirect()->route('dashboard.gudang');
+        } elseif ($user->role == 'Staff Lapang' || $user->role == 'Staf Lapang') {
+            return redirect()->route('dashboard.lapang');
+        }
+        return redirect()->route('dashboard.admin');
     }
 
-    // Proses logout
     public function logout(Request $request)
     {
         Auth::logout();

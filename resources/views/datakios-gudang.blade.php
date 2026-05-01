@@ -11,7 +11,7 @@
 
     <div class="header-top">
         <div class="header-left">
-            <a href="{{ route('dashboard.lapang') }}" class="btn-back">&larr;</a>
+            <a href="{{ route('dashboard.gudang') }}" class="btn-back">&larr;</a>
             
             <div class="search-box">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -29,6 +29,24 @@
         </div>
     </div>
 
+    @if(session('success'))
+            <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(request('status') == 'batal')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Proses edit data Kios dibatalkan!
+            </div>
+        @endif
+
+        @if(request('status') == 'batal_tambah')
+            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
+                Proses tambah data Kios dibatalkan!
+            </div>
+        @endif
+
     <div class="kios-grid">
         @foreach($kios as $k)
         <div class="kios-card">
@@ -37,7 +55,7 @@
                     <img src="{{ asset('images/dashboardgudang/datakios.png') }}" alt="Kios" style="width: 24px; height: 24px; object-fit: contain;">
                     Kios
                 </div>
-                <a href="{{ route('editkios', $k->id_pelanggan) }}" style="color: #000;">
+                <a href="{{ route('editkios', $k->id_kios) }}" style="color: #000;">
                     <img src="{{ asset('images/keperluandashboard/tabler_edit.png') }}" alt="Edit" style="width: 20px; height: 20px; object-fit: contain;">
                 </a>
             </div>
@@ -51,8 +69,7 @@
         </div>
         @endforeach
     </div>
-
     <a href="{{ route('tambahinkios') }}" class="fab-add">+</a>
-
+    <script src="{{ asset('js/notif.js') }}"></script>
 </body>
 </html>

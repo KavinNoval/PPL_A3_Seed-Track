@@ -1,110 +1,284 @@
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-    }
-    body {
-        background: radial-gradient(circle at top right, #fef4ce 0%, #f4f4f4 30%), 
-                    radial-gradient(circle at bottom right, #d4e0b0 0%, #f4f4f4 40%);
-        background-color: #f4f4f4;
-        min-height: 100vh;
-        padding: 40px 80px;
-        color: #333;
-    }
-    .top-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 20px;
-    }
-    .top-left .breadcrumb {
-        font-size: 14px;
-        color: #888;
-        margin-bottom: 20px;
-    }
-    .top-left h1 {
-        font-size: 28px;
-        color: #000;
-        margin-bottom: 5px;
-    }
-    .top-left .role {
-        font-size: 16px;
-        color: #aaa;
-    }
-    .top-right {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        font-weight: 700;
-        font-size: 18px;
-    }
-    .top-right img {
-        height: 40px;
-    }
-    .fitur-section {
-        margin-top: 50px;
-    }
-    .fitur-section h3 {
-        font-size: 18px;
-        margin-bottom: 30px;
-        font-weight: 600;
-    }
-    .grid-fitur {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        max-width: 900px;
-    }
-    .fitur-card {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        text-decoration: none;
-        color: #000;
-    }
-    .icon-circle {
-        width: 70px;
-        height: 70px;
-        background-color: #fff;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-    .icon-circle img {
-        width: 30px;
-        height: 30px;
-        object-fit: contain;
-    }
-    .fitur-text h4 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-    .fitur-text p {
-        font-size: 13px;
-        color: #aaa;
-    }
-    .logout-btn {
-        position: fixed;
-        bottom: 50px;
-        left: 80px;
-        width: 70px;
-        height: 70px;
-        background-color: #d32f2f;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
-    }
-    .logout-btn img {
-        width: 28px;
-        height: 28px;
-        filter: brightness(0) invert(1); /* Bikin icon jadi putih */
-    }
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: 'Inter', sans-serif;
+
+}
+
+body {
+
+    background: radial-gradient(circle at top right, #fef4ce 0%, #f4f4f4 30%), 
+
+                radial-gradient(circle at bottom right, #d4e0b0 0%, #f4f4f4 40%);
+
+    background-color: #f4f4f4;
+
+    min-height: 100vh;
+
+    padding: 40px 80px;
+
+    color: #333;
+
+}
+
+.top-bar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+
+}
+
+.top-left .breadcrumb {
+
+    font-size: 14px;
+
+    color: #888;
+
+    margin-bottom: 20px;
+
+}
+
+.top-left h1 {
+
+    font-size: 28px;
+
+    color: #000;
+
+    margin-bottom: 5px;
+
+}
+
+.top-left .role {
+
+    font-size: 16px;
+
+    color: #aaa;
+
+}
+
+.top-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-weight: 700;
+
+    font-size: 18px;
+
+}
+
+.top-right img {
+
+    height: 40px;
+
+}
+
+.fitur-section {
+
+    margin-top: 50px;
+
+}
+
+.fitur-section h3 {
+
+    font-size: 18px;
+
+    margin-bottom: 30px;
+
+    font-weight: 600;
+
+}
+
+.grid-fitur {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    max-width: 900px;
+
+}
+
+.fitur-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    text-decoration: none;
+
+    color: #000;
+
+}
+
+.icon-circle {
+
+    width: 70px;
+
+    height: 70px;
+
+    background-color: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+}
+
+.icon-circle img {
+
+    width: 30px;
+
+    height: 30px;
+
+    object-fit: contain;
+
+}
+
+.fitur-text h4 {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin-bottom: 5px;
+
+}
+
+.fitur-text p {
+
+    font-size: 13px;
+
+    color: #aaa;
+
+}
+
+.logout-btn {
+
+    position: fixed;
+
+    bottom: 50px;
+
+    left: 80px;
+
+    width: 70px;
+
+    height: 70px;
+
+    background-color: #d32f2f;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border: none;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+
+}
+
+.logout-btn img {
+
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1); /* Bikin icon jadi putih */
+
+}
+
+/* ========================================= */
+/* CSS BUAT MODAL / POP-UP LOGOUT (VERSI NEON) */
+/* ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+}
+
+.modal-box {
+    background-color: white;
+    padding: 40px 60px;
+    border-radius: 30px; 
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    min-width: 450px; 
+}
+
+.modal-box p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 35px;
+    line-height: 1.4;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+}
+
+.btn-modal {
+    width: 140px; 
+    padding: 12px 0;
+    border: 1px solid #666; 
+    border-radius: 50px; 
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #000; 
+    transition: 0.2s;
+}
+
+.btn-ya {
+    background-color: #39ff14; 
+}
+
+.btn-ya:hover {
+    background-color: #32cd32; 
+}
+
+.btn-batal {
+    background-color: #ff0000; 
+}
+
+.btn-batal:hover {
+    background-color: #cc0000; 
+}
