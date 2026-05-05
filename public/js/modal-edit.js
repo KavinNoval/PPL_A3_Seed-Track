@@ -1,37 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Cari pop-up konfirmasinya
     const modalEdit = document.getElementById('modalKonfirmasiEdit');
-
-    // 2. Deteksi otomatis Form-nya
     if (!modalEdit) return;
 
     const formEdit = document.querySelector("form[id^='formEdit']");
-
     const btnBatal = document.getElementById('btnBatalSimpan') || document.getElementById('btnBatalEdit');
     const btnYa = document.getElementById('btnYaSimpan') || document.getElementById('btnYaEdit');
-    const btnTampilkanModal = document.getElementById('btnTampilkanModal');
-
-    if (btnTampilkanModal) {
-        btnTampilkanModal.addEventListener('click', function() {
-            modalEdit.style.display = 'block';
-        });
-    } 
-    else if (formEdit) {
+    
+    if (formEdit) {
         formEdit.addEventListener('submit', function(e) {
+            if (!formEdit.checkValidity()) {
+                return; 
+            }
+            
             e.preventDefault();
-            modalEdit.style.display = 'block'; 
+            modalEdit.style.display = 'flex'; 
         });
     }
     
-    // Pas tombol Batal diklik
+    // batal baru
     if (btnBatal) {
         btnBatal.addEventListener('click', function() {
+            //nutup
             modalEdit.style.display = 'none';
+            
+            //pesan form
+            const pesanBatal = document.getElementById('pesanBatal');
+            if (pesanBatal) {
+                pesanBatal.style.display = 'block';
+                
+                setTimeout(() => {
+                    pesanBatal.style.display = 'none';
+                }, 3000);
+            }
         });
     }
 
-    // Pas tombol Ya diklik
     if (btnYa && formEdit) {
         btnYa.addEventListener('click', function() {
             formEdit.submit(); 

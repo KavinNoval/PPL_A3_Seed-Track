@@ -138,3 +138,8 @@ body::before {
 .btn-submit:hover {
     background: #1f2b20;
 }
+
+.wajib-isi::after {
+    content: " *";
+    color: red;
+}

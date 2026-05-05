@@ -17,6 +17,9 @@
         
         <form action="{{ route('rubahstaf') }}" method="POST" class="form-card" id="formTambahStaf">
             @csrf
+            <div id="pesanBatal" style="display: none; position: fixed; top: 90px; right: 30px; z-index: 9999; background-color: #ff0000; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; box-shadow: 0 10px 15px rgba(0,0,0,0.2); border-left: 6px solid #8b0000;">
+                Data staf batal disimpan
+            </div>
             <div class="form-grid">
                 <div class="form-group">
                     <label class="wajib-isi">Username</label>
@@ -72,7 +75,7 @@
             <p>Apakah ingin menambah staf?</p>
             <div class="modal-buttons">
                 <button type="button" class="btn-modal btn-ya" id="btnYa">Ya</button>
-                <button type="button" class="btn-modal btn-batal" onclick="window.location.href='{{ route('data.staf') }}?status=batal_tambah'">Batal</button>
+                <button type="button" class="btn-modal btn-batal" id="btnBatal">Batal</button>
             </div>
         </div>
     </div>

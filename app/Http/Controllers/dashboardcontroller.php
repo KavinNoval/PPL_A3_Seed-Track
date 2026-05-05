@@ -60,7 +60,7 @@ class DashboardController extends Controller
         $user->role = $request->role; 
         $user->status = $request->status;
         $user->save();
-        return redirect()->route('data.staf')->with('success', 'Data Staf berhasil dibuat!');
+        return redirect()->route('data.staf')->with('success', 'Data Staf berhasil ditambahkan');
     }
 
     public function editStaf($id)
@@ -112,9 +112,9 @@ class DashboardController extends Controller
         ]);
 
         if (Auth::user()->role == 'Staff Lapang') {
-            return redirect()->route('mitra.lapang')->with('success', 'Data Mitra berhasil dibuat!');
+            return redirect()->route('mitra.lapang')->with('success', 'Data Mitra berhasil ditambahkan');
         }
-        return redirect()->route('data.mitra')->with('success', 'Data Mitra berhasil dibuat!');
+        return redirect()->route('data.mitra')->with('success', 'Data Mitra berhasil ditambahkan');
     }
     
 
@@ -138,9 +138,9 @@ class DashboardController extends Controller
         ]);
 
         if (Auth::user()->role == 'Staff Lapang') {
-            return redirect()->route('mitra.lapang')->with('success', 'Data staf telah berhasil diubah');
+            return redirect()->route('mitra.lapang')->with('success', 'Data Mitra telah berhasil diubah');
         }
-        return redirect()->route('data.mitra')->with('success', 'Data staf telah berhasil diubah');
+        return redirect()->route('data.mitra')->with('success', 'Data Mitra telah berhasil diubah');
     }
 
     public function batalMitra(Request $request)
@@ -172,11 +172,11 @@ class DashboardController extends Controller
             'NIB' => $request->NIB,
         ]);
 
-        if (Auth::user()->role == 'Staf Gudang' || Auth::user()->role == 'Staff Gudang') {
-            return redirect()->route('kios.gudang')->with('success', 'Data Kios berhasil dibuat!');
+        if (Auth::user()->role == 'Staff Gudang') {
+            return redirect()->route('kios.gudang')->with('success', 'Data kios berhasil ditambahkan');
         }
 
-        return redirect()->route('data.kios')->with('success', 'Data Kios berhasil dibuat!');
+        return redirect()->route('data.kios')->with('success', 'Data kios berhasil ditambahkan');
     }
 
     public function editKios($id)
@@ -196,11 +196,11 @@ class DashboardController extends Controller
             'NIB'          => $request->NIB,
         ]);
 
-        if (Auth::user()->role == 'Staf Gudang' || Auth::user()->role == 'Staff Gudang') {
-            return redirect()->route('kios.gudang')->with('success', 'Data Kios berhasil diupdate!');
+        if (Auth::user()->role == 'Staff Gudang') {
+            return redirect()->route('kios.gudang')->with('success', 'Data Kios berhasil diubah');
         }
 
-        return redirect()->route('data.kios')->with('success', 'Data Kios berhasil diupdate!');
+        return redirect()->route('data.kios')->with('success', 'Data Kios berhasil diubah');
     }
 
     public function batalKios(Request $request)
@@ -210,7 +210,7 @@ class DashboardController extends Controller
 
         if ($role == 'Admin') {
             return redirect()->route('data.kios', ['status' => $status]);
-        } elseif ($role == 'Staff Gudang' || $role == 'Staf Gudang') { // Jaga-jaga double F
+        } elseif ($role == 'Staff Gudang') { 
             return redirect()->route('kios.gudang', ['status' => $status]);
         }
 

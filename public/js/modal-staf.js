@@ -1,22 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const formStaf = document.getElementById('formTambahStaf');
-    const modalStaf = document.getElementById('modalKonfirmasi');
-    const btnYaStaf = document.getElementById('btnYa');
+    const formTambah = document.getElementById('formTambahStaf');
+    const modalKonfirmasi = document.getElementById('modalKonfirmasi');
+    const btnYa = document.getElementById('btnYa');
+    const btnBatal = document.getElementById('btnBatal');
+    const pesanBatal = document.getElementById('pesanBatal');
 
-    if (formStaf) {
-        formStaf.addEventListener('submit', function(e) {
-            if (!formStaf.checkValidity()) {
+    if (formTambah && modalKonfirmasi) {
+        formTambah.addEventListener('submit', function(e) {
+            if (!formTambah.checkValidity()) {
                 return; 
             }
-            
+
             e.preventDefault();
-            modalStaf.style.display = 'flex'; 
+            modalKonfirmasi.style.display = 'flex';
         });
     }
 
-    if (btnYaStaf) {
-        btnYaStaf.addEventListener('click', function() {
-            formStaf.submit(); 
+    if (btnBatal && modalKonfirmasi) {
+        btnBatal.addEventListener('click', function() {
+            modalKonfirmasi.style.display = 'none';
+            
+            if (pesanBatal) {
+                pesanBatal.style.display = 'block';
+                setTimeout(() => {
+                    pesanBatal.style.display = 'none';
+                }, 3000);
+            }
         });
     }
+
+    if (btnYa && formTambah) {
+        btnYa.addEventListener('click', function() {
+            formTambah.submit();
+        });
+    }
+
 });

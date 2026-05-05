@@ -28,10 +28,23 @@ body {
     align-items: flex-start;
     padding: 30px 0;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-    /*ini ngecilin */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     z-index: 50;
+
+    position: sticky;
+    top: 20px; 
+    height: calc(100vh - 40px); 
+
+    overflow-x: hidden; /* teks pas sidebar ngecil */
+    overflow-y: auto;   /* bisa scroll atas-bawah khusus dalam sidebar */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+.sidebar {
+    -ms-overflow-style: none;  /* Buat Internet Explorer / Edge */
+    scrollbar-width: none;     /* Buat Firefox */
 }
 
 /* melebar pas di hover */

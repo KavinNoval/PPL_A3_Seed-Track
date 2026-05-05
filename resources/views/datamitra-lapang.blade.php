@@ -21,7 +21,7 @@
             </a>
 
             <div class="top-action-bar">
-                <input type="text" class="search-input" placeholder="Cari">
+                <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari">
                 <button class="btn-filter">Filter Y</button>
             </div>
         </div>
@@ -40,13 +40,13 @@
         
         @if(request('status') == 'batal')
             <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses edit data Mitra dibatalkan!
+                Data mitra batal diubah
             </div>
         @endif
 
         @if(request('status') == 'batal_tambah')
             <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses tambah data Mitra dibatalkan!
+                Data mitra batal disimpan
             </div>
         @endif
 
@@ -81,5 +81,6 @@
     <a href="{{ route('tambahinmitra') }}" class="fab-add">+</a>
 </main>
 <script src="{{ asset('js/notif.js') }}"></script>
+<script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>

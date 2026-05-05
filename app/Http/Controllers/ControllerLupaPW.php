@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 
 class ControllerLupaPW extends Controller
 {
     public function showResetForm()
     {
-        return view('lupapw'); 
+        return view('lupapw');
     }
 
     public function update(Request $request)
@@ -33,6 +34,6 @@ class ControllerLupaPW extends Controller
         ->where('username', $request->username)
         ->update(['password' => $request->password]);
 
-    return redirect()->route('login')->with('success', 'Password berhasil diubah! Silakan login.');
+    return redirect()->route('login')->with('success', 'Password berhasil diubah');
 }
 }

@@ -98,8 +98,19 @@
     <main class="main-content">
         <header class="topbar-staf">
             <div class="top-action-bar">
-                <input type="text" class="search-input" placeholder="Cari">
-                <button class="btn-filter">Filter</button>
+                <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari">
+                <select id="filterDropdown" class="btn-filter" style="outline: none; cursor: pointer;">
+                    <option value="semua">Semua (Filter)</option>
+                    <optgroup label="Jabatan">
+                        <option value="admin">Admin</option>
+                        <option value="staff gudang">Staff Gudang</option>
+                        <option value="staff lapang">Staff Lapang</option>
+                    </optgroup>
+                    <optgroup label="Status">
+                        <option value="aktif">Status: Aktif</option>
+                        <option value="non aktif">Status: Non Aktif</option>
+                    </optgroup>
+                </select>
             </div>
             <div class="topbar-logo">
                 <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Seed Track">
@@ -111,19 +122,7 @@
             <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
                 {{ session('success') }}
             </div>
-        @endif
-        
-        @if(request('status') == 'batal')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Data staf batal diubah
-            </div>
-        @endif
-
-        @if(request('status') == 'batal_tambah')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Data staf batal disimpan
-            </div>
-        @endif
+    @endif
 
         <div class="staff-grid">
             @foreach($staf as $s)
@@ -143,8 +142,10 @@
 
                 </div>
                 <div class="staff-body">
+                    <div>Username : {{ $s->username }}</div>
                     <div>Nama Lengkap : {{ $s->nama_lengkap }}</div>
                     <div>Nomor Telepon : {{ $s->no_telp }}</div>
+                    <div>Password : {{ $s->password }}</div>
                 </div>
             </div>
             @endforeach
@@ -153,5 +154,6 @@
     </main> 
     <script src="{{ asset('js/logout.js') }}"></script>
     <script src="{{ asset('js/notif.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>

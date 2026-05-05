@@ -89,8 +89,12 @@
     <main class="main-content">
         <header class="topbar-staf">
             <div class="top-action-bar">
-                <input type="text" class="search-input" placeholder="Cari">
-                <button class="btn-filter">Filter Y</button>
+                <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari">
+                <select id="filterDropdown" class="btn-filter" style="outline: none; cursor: pointer;">
+                    <option value="semua">Semua (Filter)</option>
+                    <option value="ada_nib">Ada NIB</option>
+                    <option value="tanpa_nib">Tanpa NIB</option>
+                </select>
             </div>
             <div class="topbar-logo">
                 <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Seed Track">
@@ -101,18 +105,6 @@
         @if(session('success'))
             <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
                 {{ session('success') }}
-            </div>
-        @endif
-        
-        @if(request('status') == 'batal')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses edit data Kios dibatalkan!
-            </div>
-        @endif
-
-        @if(request('status') == 'batal_tambah')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses tambah data Kios dibatalkan!
             </div>
         @endif
 
@@ -155,5 +147,6 @@
     </div>
     <script src="{{ asset('js/logout.js') }}"></script>
     <script src="{{ asset('js/notif.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html> 

@@ -10,18 +10,18 @@
 <body>
 
     <div class="header-top">
-        <div class="header-left">
+        <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
             <a href="{{ route('dashboard.gudang') }}" class="btn-back">&larr;</a>
             
-            <div class="search-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" placeholder="Cari">
-            </div>
+            <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari" 
+                   style="padding: 10px 20px; border: 1px solid #ced4da; border-radius: 20px; outline: none; width: 250px; font-family: 'Inter', sans-serif;">
             
-            <button class="btn-filter">
-                Filter 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-            </button>
+            <select id="filterDropdown" class="btn-filter" 
+                    style="padding: 10px 20px; border: 1px solid #ced4da; border-radius: 20px; outline: none; cursor: pointer; background-color: white; font-family: 'Inter', sans-serif;">
+                <option value="semua">Semua (Filter)</option>
+                <option value="ada_nib">Ada NIB</option>
+                <option value="tanpa_nib">Tanpa NIB</option>
+            </select>
         </div>
         <div class="header-right">
             Seed Track
@@ -30,22 +30,10 @@
     </div>
 
     @if(session('success'))
-            <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
-                {{ session('success') }}
-            </div>
-        @endif
-        
-        @if(request('status') == 'batal')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses edit data Kios dibatalkan!
-            </div>
-        @endif
-
-        @if(request('status') == 'batal_tambah')
-            <div class="pesan-otomatis" style="background-color: #ff0000ff; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #744210; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #b7791f;">
-                Proses tambah data Kios dibatalkan!
-            </div>
-        @endif
+        <div class="pesan-otomatis" style="background-color: #48bb78; padding: 12px 24px; border-radius: 8px; margin: 20px 0 20px auto; width: fit-content; color: #ffffff; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #2f855a;">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="kios-grid">
         @foreach($kios as $k)
@@ -69,7 +57,9 @@
         </div>
         @endforeach
     </div>
+    
     <a href="{{ route('tambahinkios') }}" class="fab-add">+</a>
     <script src="{{ asset('js/notif.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>

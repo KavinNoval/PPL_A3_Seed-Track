@@ -13,10 +13,22 @@
     </div>
     
     <div class="content-form">
-        <a href="{{ route('data.kios') }}" class="btn-back">&larr;</a>
+        @if(strtolower(trim(Auth::user()->role)) == 'admin')
+            <a href="{{ route('data.kios') }}" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </a>
+        @elseif(strtolower(trim(Auth::user()->role)) == 'staff gudang')
+            <a href="{{ route('kios.gudang') }}" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </a>
+        @endif
+
         <form action="{{ route('updatekios', $kios->id_kios) }}" method="POST" class="form-card" id="formEditKios">
             @csrf
             <div class="form-grid">
+                <div id="pesanBatal" style="display: none; position: fixed; top: 90px; right: 30px; z-index: 9999; background-color: #ff0000; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; box-shadow: 0 10px 15px rgba(0,0,0,0.2); border-left: 6px solid #8b0000;">
+                    Data kios batal diubah
+                </div>
                 <div class="form-group">
                     <label class="wajib-isi">Nama Kios</label>
                     <input type="text" name="nama_kios" value="{{ old('nama_kios') ?? $kios->nama_kios }}" required
@@ -62,7 +74,7 @@
             <p>Apakah ingin menyimpan perubahan?</p>
             <div class="modal-buttons">
                 <button type="button" class="btn-modal btn-ya" id="btnYaEdit">Ya</button>
-                <button type="button" class="btn-modal btn-batal" id="btnBatalEdit" onclick="window.location.href='{{ route('batal.kios') }}'">Batal</button>
+                <button type="button" class="btn-modal btn-batal" id="btnBatalEdit">Batal</button>
             </div>
         </div>
     </div>
