@@ -1,0 +1,313 @@
+/* public/css/tambah-monitoring.css */
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #a4b97f; /* Background hijau seger */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-white {
+    background-color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-white h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 22px;
+}
+
+.content-area {
+    padding: 50px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.back-btn-circle {
+    background-color: #3f5229;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.back-btn-circle img {
+    width: 24px;
+    filter: brightness(0) invert(1); 
+}
+
+.form-card {
+    background-color: white;
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 850px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+.asterisk {
+    color: #ef4444; 
+}
+
+.input-box {
+    padding: 14px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-box:focus {
+    border-color: #8FB935;
+}
+
+textarea.input-box {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.upload-box-new {
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 14px;
+    height: 60px;
+}
+
+.btn-simpan {
+    background-color: #a4b97f;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 50%;
+    float: right;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.btn-simpan:hover {
+    background-color: #8fa56b;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* ======================================================== */
+/* CSS TAMBAHAN BUAT MODAL (POP UP) */
+/* ======================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Gelapin background luar */
+    display: none; /* Awalnya sembunyi, diatur JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.modal-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-modal {
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-ya {
+    background-color: #4dfd00; /* Hijau neon kyak di dashboard lu */
+    color: black;
+}
+
+.btn-ya:hover {
+    background-color: #3ecc00;
+}
+
+.btn-batal {
+    background-color: #ff3939;
+    color: white; /* <-- Udah gue benerin boy, biar kaga buta warna wkwk */
+}
+
+.btn-batal:hover {
+    background-color: #d60505;
+}
+
+/* ========================================= */
+/* NOTIFIKASI PILL 3D MELAYANG               */
+/* ========================================= */
+
+.alert-fixed-container {
+    position: fixed;
+    top: 90px;
+    right: 50px;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    pointer-events: none;
+}
+
+.alert-3d {
+    padding: 12px 35px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: white;
+    min-width: 250px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: auto;
+}
+
+.alert-success { 
+    background-color: #48bb78; 
+    border-bottom: 5px solid #2f855a; 
+    border-left: 2px solid #38a169; 
+}
+
+.alert-error { 
+    background-color: #ff0000; 
+    border-bottom: 5px solid #b91c1c; 
+    border-left: 2px solid #dc2626; 
+}
+
+@keyframes slideInRight {
+    0% { transform: translateX(120%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* ========================================= */
+/* CSS TOOLTIP ALERT OREN                    */
+/* ========================================= */
+.custom-tooltip {
+    position: absolute;
+    top: 100%; 
+    left: 20px; 
+    margin-top: 8px; 
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000; 
+    border: 1px solid #e2e8f0;
+    animation: fadeInTooltip 0.3s ease;
+}
+
+.custom-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px; 
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    transform: rotate(45deg);
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+}
+
+.tooltip-icon {
+    background-color: #ff8c00; 
+    color: white;
+    font-weight: 900;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    font-size: 14px;
+    z-index: 2; 
+}
+
+.custom-tooltip span {
+    font-size: 14px;
+    color: #333;
+    z-index: 2;
+}
+
+@keyframes fadeInTooltip {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

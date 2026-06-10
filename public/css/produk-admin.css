@@ -1,0 +1,328 @@
+/* ========================================================= */
+/* CSS KHUSUS KONTEN PRODUK (PRODUK-ADMIN.CSS)               */
+/* ========================================================= */
+body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Tombol Back Pinter (Biar Admin & Gudang bisa make) */
+.btn-back-circle {
+    background: #2D3A2E;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-back-circle:hover {
+    transform: scale(1.05);
+    background: #3b4d3c;
+}
+
+.topbar-produk {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.action-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Kotak Pencarian bentuk Kapsul */
+.search-pill {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid #d1d5db;
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 300px;
+}
+
+.search-pill svg { stroke: #6b7280; }
+
+.search-pill input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    margin-left: 10px;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+}
+
+/* Tombol Filter bentuk Kapsul */
+.filter-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #d1d5db;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #4b5563;
+    transition: 0.2s;
+}
+
+.filter-pill:hover { background-color: #f3f4f6; }
+.filter-pill svg { stroke: #6b7280; }
+
+/* GRID CARD PRODUK */
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* CARD PRODUK */
+.produk-card {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.produk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.produk-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.produk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.produk-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2D3A2E;
+}
+
+.produk-badge {
+    border: 1px solid #A7B774;
+    color: #A7B774;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.produk-desc {
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.produk-desc span {
+    color: #A7B774;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.produk-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.produk-harga {
+    font-weight: 800;
+    color: #2D3A2E;
+    font-size: 0.95rem;
+}
+
+.produk-btn-detail {
+    background-color: #2D3A2E;
+    color: white;
+    text-decoration: none;
+    padding: 8px 25px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.produk-btn-detail:hover {
+    background-color: #1a231b;
+}
+
+/* ========================================= */
+/* CSS MODAL DETAIL PRODUK                   */
+/* ========================================= */
+
+.modal-detail-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-detail-box {
+    background-color: white;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.mdl-title { font-size: 1.4rem; font-weight: 800; color: #2D3A2E; margin-bottom: 25px; margin-top: 0; }
+
+.mdl-top-content {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.mdl-img {
+    width: 200px; height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+}
+
+.mdl-info { flex: 1; display: flex; flex-direction: column; }
+
+.mdl-stok-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.mdl-badge-kuning { background-color: #FDE68A; color: #92400E; font-weight: 700; font-size: 0.8rem; padding: 5px 15px; border-radius: 20px; }
+.mdl-stok-text { font-weight: 800; font-size: 1.1rem; color: #000; }
+
+.mdl-desc { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: auto; }
+.mdl-price { font-size: 1.1rem; font-weight: 800; color: #2D3A2E; margin-top: 15px; margin-bottom: 0; }
+
+.mdl-subtitle { font-size: 1.1rem; font-weight: 800; color: #2D3A2E; margin-bottom: 15px; }
+.mdl-list { font-size: 0.9rem; color: #555; line-height: 1.6; padding-left: 20px; }
+.mdl-list li { margin-bottom: 8px; }
+
+.mdl-btn-kuning {
+    display: inline-block;
+    background-color: #FDE68A;
+    color: #92400E;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 40px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.mdl-btn-kuning:hover { background-color: #fcd34d; }
+
+
+.alert-fixed-container {
+    position: fixed;
+    top: 90px;      /* Tepat di bawah logo Seed Track lu */
+    right: 50px;    /* Sejajar margin kanan logo */
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    pointer-events: none;
+}
+
+.alert-3d {
+    padding: 12px 35px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: white;
+    text-align: center;
+    min-width: 280px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: auto;
+}
+
+.alert-success {
+    background-color: #48bb78;
+    border-bottom: 5px solid #2f855a; /* Efek nimbul */
+}
+
+.alert-error {
+    background-color: #ff0000;
+    border-bottom: 5px solid #b91c1c; /* Efek nimbul */
+}
+
+@keyframes slideInRight {
+    0% { transform: translateX(120%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* ========================================================
+   MODIFIER KHUSUS UNTUK HALAMAN TANPA SIDEBAR (GUDANG)
+   ======================================================== */
+body.tanpa-sidebar {
+    margin: 0;
+    background-color: #f4f7f4 !important;
+    display: block !important;
+}
+
+.content-wrapper-gudang {
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 1400px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.btn-back-circle {
+    background: #2D3A2E;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-back-circle:hover {
+    transform: scale(1.05);
+    background: #3b4d3c;
+}
+/* CLASS SAKTI BIAR TOMBOL MINGGIR KE KANAN */
+.mdl-action-right {
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    margin-top: 35px;
+}

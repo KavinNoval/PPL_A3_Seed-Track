@@ -21,50 +21,60 @@
                 Data staf batal disimpan
             </div>
             <div class="form-grid">
+                
                 <div class="form-group">
                     <label class="wajib-isi">Username</label>
-                    <input type="text" name="username" placeholder="Masukkan Username" required
+                    <input type="text" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
                 </div>
+                
                 <div class="form-group">
                     <label class="wajib-isi">Password</label>
-                    <input type="text" name="password" placeholder="Masukkan Password" required
+                    <input type="text" name="password" placeholder="Masukkan Password" value="{{ old('password') }}" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
                 </div>
+                
                 <div class="form-group">
                     <label class="wajib-isi">Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" required
+                    <input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" value="{{ old('nama_lengkap') }}" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
                 </div>
+                
                 <div class="form-group">
                     <label class="wajib-isi">Nomor Telepon</label>
-                    <input type="text" name="no_telp" placeholder="Masukkan Nomor Telepon" required
+                    <input type="text" name="no_telp" placeholder="Masukkan Nomor Telepon" value="{{ old('no_telp') }}" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
+                    @error('no_telp')
+                        <span style="color: red; font-size: 12px; margin-top: 5px; display: block;">*{{ $message }}</span>
+                    @enderror
                 </div>
+                
                 <div class="form-group">
                     <label class="wajib-isi">Role</label>
                     <select name="role" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
                         <option value="">Pilih Role</option>
-                        <option value="Staff Lapang">Staf Lapang</option>
-                        <option value="Staff Gudang">Staf Gudang</option>
+                        <option value="Staff Lapang" {{ old('role') == 'Staff Lapang' ? 'selected' : '' }}>Staf Lapang</option>
+                        <option value="Staff Gudang" {{ old('role') == 'Staff Gudang' ? 'selected' : '' }}>Staf Gudang</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <label class="wajib-isi">Status</label>
                     <select name="status" required
                     oninvalid="this.setCustomValidity('Semua informasi harus diisi')" 
                     oninput="this.setCustomValidity('')">
                         <option value="">Masukkan Status</option>
-                        <option value="Aktif">Aktif</option>
-                        <option value="Non Aktif">Non Aktif</option>
+                        <option value="Aktif" {{ old('status') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                        <option value="Non Aktif" {{ old('status') == 'Non Aktif' ? 'selected' : '' }}>Non Aktif</option>
                     </select>
                 </div>
+                
                 <button type="submit" class="btn-simpan">SIMPAN</button>
             </div>
         </form>

@@ -47,6 +47,9 @@
                     <input type="text" name="no_telp" value="{{ $staf->no_telp }}" required
                            oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
                            oninput="this.setCustomValidity('')">
+                           @error('no_telp')
+                            <span style="color: red; font-size: 12px; margin-top: 5px; display: block;">*{{ $message }}</span>
+                            @enderror
                 </div>
                 
                 <div class="form-group">

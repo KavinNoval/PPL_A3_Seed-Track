@@ -11,8 +11,11 @@
 <body>
 
     <div class="login-container">
-        <img src="{{ asset('images/login+logo.png') }}" alt="Sawah Background" class="bg-image">
-
+        <img src="{{ asset('images/background.png') }}" alt="Sawah Background" class="bg-image">
+        <div class="logo-container">
+        <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Logo Text" class="logo-text">
+        <img src="{{ asset('images/Logo ST.png') }}" alt="Logo Icon" class="logo-icon">
+        </div>
         <div class="glass-panel">
             <div class="form-heading">
                 <h1>Halo Para Staf<br>Tercinta</h1>
@@ -44,7 +47,7 @@
                         <input type="password" id="password" name="password" class="form-input" placeholder="Masukkan Password" required
                         oninvalid="this.setCustomValidity('Harap isi semua data')"
                         oninput="this.setCustomValidity('')">
-                        
+
                         <button type="button" class="password-toggle" id="passwordToggle">
                             <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>

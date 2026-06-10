@@ -1,4 +1,8 @@
-/* public/css/lupapw.css */
+/* =========================================
+   CSS HALAMAN UBAH PASSWORD (TEMA KACA BLUR FULL)
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
 /* Reset base */
 * {
@@ -7,13 +11,15 @@
     box-sizing: border-box;
 }
 
-body {
+body.lupapw-page {
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../images/login+logo.png');
+
+    /* WARNA CADANGAN: Kalau gambar gagal load */
+    background-color: #2d3a2e;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,125 +27,187 @@ body {
     overflow: hidden;
 }
 
-/* 1. Ini kuncinya: Full-screen Blur Overlay */
-body::before {
+/* 1. Full-screen Blur Overlay (Sesuai Gambar Lu) */
+body.lupapw-page::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Gunakan backdrop-filter untuk membuat full blur */
-    backdrop-filter: blur(30px); /* Nilai blur tinggi kyk target */
-    -webkit-backdrop-filter: blur(30px);
-    /* Sedikit translucent background untuk efek glassmorphism kyk target */
-    background: rgba(255, 255, 255, 0.1); 
-    z-index: 1; /* Di belakang panel form */
+    backdrop-filter: blur(12px); /* Ngeblur background-nya */
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.15); /* Dikasih bayangan item dikit biar teks putih makin jelas */
+    z-index: 1;
 }
 
-/* Logo container di top right kyk target */
+/* Logo Pojok Kanan Atas */
 .logo-container {
     position: absolute;
     top: 30px;
     right: 40px;
     z-index: 3;
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 12px;
 }
 
 .logo-text {
-    height: 26px; 
+    height: 26px;
     object-fit: contain;
 }
 
 .logo-icon {
-    height: 40px; 
+    height: 40px;
     object-fit: contain;
 }
 
+/* Container Form Tengah */
 .form-center-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 2; 
+    z-index: 2;
+    padding: 20px;
 }
 
 .form-center-container {
-    max-width: 480px; 
-    width: 90%;
-    background: rgba(255, 255, 255, 0.1); 
-    padding: 60px 50px; /* Padding luas kyk target */
-    border-radius: 20px; /* Rounded corners kyk target */
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+    max-width: 420px;
+    width: 100%;
+    padding: 40px 30px; /* Gue tambahin padding biar jarak dalemnya lega */
     text-align: center;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    background: rgba(255, 255, 255, 0.1); /* Warna dasar bening keputihan */
+    backdrop-filter: blur(16px); /* Efek ngeblur di belakang kotaknya doang */
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px; /* Ujung kotaknya melengkung mulus */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Garis pinggir tipis ala pantulan kaca */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Bayangan biar kotaknya misah/timbul dari background */
 }
 
+/* Judul "Ubah Password" */
 .form-center-container h1 {
     color: #ffffff;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Kasih bayangan biar tebel */
 }
 
+/* ================= PESAN NOTIFIKASI ================= */
+.alert {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.alert-success {
+    background-color: #48bb78;
+    color: white;
+    text-align: center;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    text-align: left;
+}
+
+/* Jarak antar form */
 .form-group {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
 }
 
+/* Label (Username, Password Lama, dll) */
 .form-group label {
-    display: block;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
     font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4); /* Bayangan teks biar kebaca jelas */
 }
 
+/* Bintang merah */
+.wajib-isi::after {
+    content: " *";
+    color: #ff4d4f;
+    text-shadow: none;
+}
+
+/* Input Form (Bentuk Lonjong Full Putih) */
 .form-group input {
     width: 100%;
-    padding: 13px 20px;
-    background: #ffffff;
+    padding: 16px 25px; /* Bantalan dalam biar gendut */
+    background: #ffffff; /* Putih bersih */
     border: none;
-    border-radius: 50px;
-    color: #333;
-    font-size: 0.9rem;
+    border-radius: 50px; /* Bikin bentuk oval (pill shape) */
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 500;
     outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .form-group input::placeholder {
-    color: #aaa;
+    color: #cbd5e1;
 }
 
-.form-center-container a {
-    display: block;
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.85rem;
-    margin-bottom: 15px;
-    text-decoration: none;
+.form-group input:focus {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4); /* Ada cahaya putih kalau diklik */
 }
-.form-center-container a:hover {
+
+/* Link Kembali ke Login */
+form a {
+    display: block;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+    text-decoration: none;
+    transition: color 0.2s;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+form a:hover {
+    color: #ffffff;
     text-decoration: underline;
 }
 
+/* Tombol Simpan */
 .btn-submit {
     width: 100%;
-    padding: 14px;
-    background: #2d3a2e; 
+    padding: 16px;
+    background: #2d3a2e; /* Ijo gelap kayak di gambar */
     color: #ffffff;
     border: none;
-    border-radius: 50px;
-    font-size: 1rem;
+    border-radius: 50px; /* Lonjong */
+    font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s;
 }
 
 .btn-submit:hover {
-    background: #1f2b20;
+    background: #1a221b;
+    transform: translateY(-2px); /* Tombol naik sedikit pas di-hover */
 }
 
-.wajib-isi::after {
-    content: " *";
-    color: red;
+/* ================= ICON MATA (OPSIONAL JIKA LU PAKE) ================= */
+.icon-mata {
+    position: absolute;
+    right: 20px;
+    top: 42px; /* Disesuaikan tinggi label */
+    color: #94a3b8;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
 }

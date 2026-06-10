@@ -1,0 +1,831 @@
+/* ==========================================
+   GLOBAL RESET & FONTS
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fafbf9;
+    color: #333;
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    height: 35px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #2D3A2E;
+}
+
+.btn-nav {
+    background: #2D3A2E;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.btn-nav:hover {
+    background: #1a241a;
+}
+
+/* ==========================================
+   HERO SECTION
+========================================== */
+.hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-top: 70px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.badge-glass {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #eee;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-primary-glass, .btn-outline-glass {
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-primary-glass {
+    background: rgba(163, 184, 122, 0.9);
+    backdrop-filter: blur(5px);
+    color: #111;
+}
+
+.btn-primary-glass:hover {
+    background: #A3B87A;
+}
+
+.btn-outline-glass {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+    color: white;
+}
+
+.btn-outline-glass:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ==========================================
+   GLOBAL SECTION RULES
+========================================== */
+.section-header.center {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.section-header h2 {
+    font-size: 2.2rem;
+    color: #111;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.section-header p {
+    color: #666;
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+   VISI MISI SECTION (DESAIN 2 KOTAK 50:50)
+========================================== */
+.visi-misi-section {
+    padding: 100px 20px 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vm-grid-new {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Membagi dua kotak dengan ukuran yang sama rata */
+    gap: 30px;
+    align-items: stretch;
+}
+
+.visi-card-new {
+    background: #f8fafc;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.visi-card-new:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transform: translateY(-5px);
+}
+
+.icon-visi {
+    background: #0b301c;
+    width: 55px; height: 55px;
+    border-radius: 14px;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 25px;
+}
+
+.visi-card-new h3 {
+    font-size: 1.8rem;
+    color: #0b301c;
+    margin-bottom: 15px;
+}
+
+.visi-card-new p {
+    color: #475569;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+   KEUNGGULAN SECTION
+========================================== */
+.keunggulan-section {
+    padding: 0 20px 100px 20px;
+}
+
+.keunggulan-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.keunggulan-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    border-bottom: 8px solid #A3B87A;
+    border-left: 8px solid #A3B87A;
+    transform: rotate(45deg);
+}
+
+.keunggulan-container h2 {
+    color: #0b301c;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+}
+
+.keunggulan-container p {
+    color: #475569;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 10px 0;
+    max-width: 85%;
+}
+
+.keunggulan-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 0 0;
+}
+
+.keunggulan-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.keunggulan-list li span {
+    color: #1e293b;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.hexagon-icon {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   PROFIL SECTION
+========================================== */
+.profil-section {
+    background: white;
+    padding: 100px 20px;
+}
+
+.profil-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.profil-image-wrapper {
+    position: relative;
+}
+
+.profil-image-wrapper img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.stat-overlap {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background: white;
+    padding: 25px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.stat-overlap .divider {
+    width: 1px;
+    height: 40px;
+    background: #ddd;
+}
+.stat-item h2 {
+    font-size: 2rem;
+    color: #0A3D2C;
+    margin-bottom: 5px;
+}
+.stat-item p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+.profil-content .subtitle {
+    color: #A3B87A;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+.profil-content h2 {
+    font-size: 2.5rem;
+    color: #0A3D2C;
+    margin: 10px 0 25px;
+    line-height: 1.2;
+}
+.profil-content p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+.profil-stats {
+    display: flex;
+    gap: 40px;
+}
+.profil-stats h3 {
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 5px;
+}
+.profil-stats p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   KATALOG SECTION
+========================================== */
+.katalog-section {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.katalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+.katalog-header h2 {
+    font-size: 2.2rem;
+    color: #0A3D2C;
+    margin-bottom: 10px;
+}
+.katalog-header p {
+    color: #666;
+    font-size: 1.05rem;
+}
+
+.katalog-filters {
+    display: flex;
+    gap: 10px;
+}
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: none;
+    background: #f1f5f9;
+    color: #555;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.filter-btn.active, .filter-btn:hover {
+    background: #e2e8f0;
+    color: #111;
+}
+
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.produk-card {
+    background: white;
+    border: 1px solid #eaeaea;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.produk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.produk-img-wrapper {
+    position: relative;
+    height: 200px;
+}
+
+.produk-img-wrapper img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.badge-stok, .badge-terbatas {
+    position: absolute;
+    top: 15px; right: 15px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: white;
+}
+.badge-stok { background: #0A3D2C; }
+.badge-terbatas { background: #dc2626; }
+
+.produk-info { padding: 20px; }
+.produk-info h4 { font-size: 1.1rem; color: #111; margin-bottom: 10px; }
+.produk-info p { color: #666; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+
+
+/* ==========================================
+   MODAL DETAIL PRODUK (KATALOG)
+========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100000;
+}
+
+.modal-produk-box {
+    background: white;
+    border-radius: 20px;
+    width: 750px;
+    max-width: 90%;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.modal-produk-content {
+    display: flex;
+    gap: 30px;
+}
+
+.modal-produk-img {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e8f0;
+}
+.modal-produk-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-produk-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.modal-produk-info h2 {
+    margin: 0 0 15px 0;
+    color: #2D3A2E;
+    font-size: 22px;
+}
+
+.badge-stok-kuning {
+    background: #fde047;
+    color: #854d0e;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.desc-text {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.price-text {
+    color: #2D3A2E;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+}
+
+.keunggulan-section h4 {
+    margin: 0 0 10px 0;
+    color: #1e293b;
+    font-size: 15px;
+}
+.keunggulan-section ul {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    color: #64748b;
+    font-size: 14px;
+}
+.keunggulan-section li {
+    margin-bottom: 6px;
+}
+
+.btn-kuning-tutup {
+    background: #fde047;
+    color: #854d0e;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.3s;
+    width: fit-content;
+    align-self: flex-end;
+    min-width: 150px;
+}
+.btn-kuning-tutup:hover {
+    background: #facc15;
+}
+
+.modal-help-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-top: 18px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   BANNER WHATSAPP (CTA SEBELUM FOOTER)
+========================================== */
+.cta-whatsapp-section {
+    background-color: #a7e4b9;
+    border-radius: 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cta-content h2 {
+    color: #0b301c;
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+}
+.cta-content p {
+    color: #1e5133;
+    font-size: 15px;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+}
+.jam-operasional {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e5133;
+    letter-spacing: 1px;
+}
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+.btn-whatsapp:hover {
+    background-color: #20ba56;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+}
+
+
+/* ==========================================
+   FOOTER (4 KOLOM ENTERPRISE)
+========================================== */
+.footer {
+    background-color: #0b301c;
+    color: #94a3b8;
+    padding: 60px 40px 20px 40px;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-col h4 {
+    color: #cbd5e1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: 0 0 24px 0;
+    text-transform: uppercase;
+}
+
+.footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.footer-logo-img {
+    width: 32px;
+    height: auto;
+}
+.footer-logo-text {
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.footer-col.about p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin: 0;
+    max-width: 90%;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-col ul li {
+    margin-bottom: 16px;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+}
+.footer-col ul li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #cbd5e1;
+}
+
+.footer-col.links ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer-col.links ul li a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+.soc-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.soc-icon:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 24px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 20px;
+}
+.footer-bottom-links a {
+    color: #64748b;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer-bottom-links a:hover {
+    color: #cbd5e1;
+}
+
+
+/* =========================================
+   MEDIA QUERY (RESPONSIF HP & TABLET)
+========================================= */
+@media (max-width: 1024px) {
+    .vm-grid-new { grid-template-columns: 1fr; }
+    .profil-container { grid-template-columns: 1fr; gap: 80px; }
+    .stat-overlap { right: 0; bottom: -40px; left: 0; justify-content: center; width: 90%; margin: 0 auto; }
+    .katalog-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .produk-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-links, .btn-nav { display: none; } /* Navbar di HP ngumpet dulu */
+    .hero h1 { font-size: 2.2rem; }
+    .hero-buttons { flex-direction: column; }
+
+    .keunggulan-container { padding: 30px 20px; }
+    .keunggulan-container h2 { font-size: 24px; }
+    .keunggulan-container p { max-width: 100%; }
+
+    .stat-overlap { flex-direction: column; gap: 10px; padding: 20px; text-align: center; }
+    .stat-overlap .divider { width: 100%; height: 1px; }
+    .profil-content h2 { font-size: 2rem; }
+    .produk-grid { grid-template-columns: 1fr; }
+
+    .cta-whatsapp-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 30px;
+        margin: 0 20px 60px 20px;
+    }
+    .cta-content p br { display: none; }
+    .jam-operasional { justify-content: center; }
+    .btn-whatsapp { width: 100%; justify-content: center; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; align-items: center; gap: 15px; text-align: center; }
+}
+
+@media (max-width: 600px) {
+    .modal-produk-content { flex-direction: column; }
+    .btn-kuning-tutup { width: 100%; margin-top: 20px; }
+}

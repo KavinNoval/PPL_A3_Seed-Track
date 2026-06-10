@@ -20,11 +20,11 @@
         </div>
     </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/profilperusahaan.png') }}" alt="Profil">
-        </div>
-        <div class="menu-text">Profil Perusahaan</div>
+    <a href="{{ route('profil.perusahaan') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/profilperusahaan.png') }}" alt="Profil">
+            </div>
+            <div class="menu-text">Profil Perusahaan</div>
     </a>
 
     <a href="{{ route('data.staf') }}" class="menu-item">
@@ -48,33 +48,33 @@
         <div class="menu-text">Data Kios</div>
     </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/katalogg.png') }}" alt="Katalog">
-        </div>
-        <div class="menu-text">Katalog Produk</div>
-    </a>
+    <a href="{{route('produk.admin')}}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/katalogg.png') }}" alt="Katalog">
+            </div>
+            <div class="menu-text">Katalog Produk</div>
+        </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/monitoring.png') }}" alt="Monitoring">
-        </div>
-        <div class="menu-text">Monitoring Lahan</div>
-    </a>
+        <a href="{{ route('monitoring.admin') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/monitoring.png') }}" alt="Monitoring">
+            </div>
+            <div class="menu-text">Monitoring Lahan</div>
+        </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/transaksi.png') }}" alt="Transaksi">
-        </div>
-        <div class="menu-text">Transaksi</div>
-    </a>
+        <a href="{{ route('transaksi.index') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/transaksi.png') }}" alt="Transaksi">
+            </div>
+            <div class="menu-text">Transaksi</div>
+        </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon-circle">
-            <img src="{{ asset('images/keperluandashboard/pengeluaran.png') }}" alt="Pengeluaran">
-        </div>
-        <div class="menu-text">Pengeluaran</div>
-    </a>
+        <a href="{{ route('pengeluaran.index') }}" class="menu-item">
+            <div class="icon-circle">
+                <img src="{{ url('images/keperluandashboard/pengeluaran.png') }}" alt="Pengeluaran">
+            </div>
+            <div class="menu-text">Pengeluaran</div>
+        </a>
 
     <form action="{{ route('logout') }}" method="POST" id="formLogout" class="logout-form">
             @csrf
@@ -85,24 +85,32 @@
                 <div class="menu-text">Logout</div>
             </button>
         </form>
-        
+
         <div id="modalLogout" class="modal-overlay" style="display: none;">
             <div class="modal-box">
                 <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
                 <div class="modal-buttons">
-            <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
+            <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Ya</button>
             <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
         </div>
 </aside>
 
 <main class="main-content">
-    <header class="topbar-staf">
-        <div class="top-action-bar">
-            <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+        <div class="page-header">
+            <h1 class="page-title" style="font-size: 1.8rem; font-weight: 800; color: #1a1a1a; margin-bottom: 5px;">Data Mitra</h1>
+            <p class="page-description" style="font-size: 0.95rem; color: #64748b; margin-top: 0;">Kelola dan pantau data mitra petani yang bekerjasama dengan perusahaan.</p>
         </div>
-        <div class="topbar-logo">
-            <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Seed Track">
-            <img src="{{ asset('images/Logo ST.png') }}" alt="Logo">
+
+        <div class="topbar-logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Seed Track" style="height: 35px;">
+            <img src="{{ asset('images/Logo ST.png') }}" alt="Logo" style="height: 35px;">
+        </div>
+    </div>
+
+    <header class="topbar-staf" style="margin-bottom: 25px;">
+        <div class="top-action-bar">
+            <input type="text" class="search-input" id="inputCariStaf" placeholder="Cari Mitra...">
         </div>
     </header>
 
@@ -136,6 +144,22 @@
                     <span class="staff-label">Nomor Telepon :</span>
                     <span class="staff-value">{{ $m->no_telp ?? '-' }}</span>
                 </div>
+
+                {{-- TAMBAHAN WILAYAH MULAI DARI SINI --}}
+                <div class="staff-row">
+                    <span class="staff-label">Kabupaten :</span>
+                    <span class="staff-value">{{ $m->kabupaten ?? 'Belum diisi' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Kecamatan :</span>
+                    <span class="staff-value">{{ $m->kecamatan ?? 'Belum diisi' }}</span>
+                </div>
+                <div class="staff-row">
+                    <span class="staff-label">Kelurahan / Desa :</span>
+                    <span class="staff-value">{{ $m->kelurahan ?? 'Belum diisi' }}</span>
+                </div>
+                {{-- TAMBAHAN WILAYAH SAMPAI SINI --}}
+
                 <div class="staff-row">
                     <span class="staff-label">Jalan Lahan :</span>
                     <span class="staff-value">{{ $m->jalan_lahan ?? '-' }}</span>

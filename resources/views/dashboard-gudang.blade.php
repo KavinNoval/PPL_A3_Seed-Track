@@ -23,7 +23,7 @@
     <div class="fitur-section">
         <h3>Fitur-Fitur</h3>
         <div class="grid-fitur">
-            <a href="#" class="fitur-card">
+            <a href="{{ route('produk.staf') }}" class="fitur-card">
                 <div class="icon-circle">
                     <img src="{{ asset('images/dashboardgudang/katalogg.png') }}" alt="Katalog">
                 </div>
@@ -32,7 +32,7 @@
                 </div>
             </a>
 
-            <a href="#" class="fitur-card">
+            <a href="{{ route('transaksi.staf') }}" class="fitur-card">
                 <div class="icon-circle">
                     <img src="{{ asset('images/dashboardgudang/catattransaksi.png') }}" alt="Transaksi">
                 </div>
@@ -50,7 +50,8 @@
                 </div>
             </a>
 
-            <a href="#" class="fitur-card">
+            {{-- 🔴 INI UDAH GUE GANTI CLASS-NYA JADI fitur-card 🔴 --}}
+            <a href="{{ route('pengeluaran.gudang') }}" class="fitur-card">
                 <div class="icon-circle">
                     <img src="{{ asset('images/dashboardgudang/pengeluaran.png') }}" alt="Pengeluaran">
                 </div>
@@ -67,13 +68,15 @@
         <img src="{{ asset('images/keperluandashboard/logout.png') }}" alt="Logout">
     </button>
     </form>
-        
+
         <div id="modalLogout" class="modal-overlay" style="display: none;">
             <div class="modal-box">
-                <p>Apakah anda yakin ingin<br>melakukan Log Out?</p>
+                <p style="font-weight: bold; font-size: 18px; color: #333;">
+                    Apakah anda yakin ingin<br>melakukan Log Out?
+                </p>
                 <div class="modal-buttons">
-            <button type="button" id="btnYaLogout" class="btn-modal btn-ya">Yakin</button>
-            <button type="button" id="btnBatalLogout" class="btn-modal btn-batal">Batal</button>
+            <button type="button" id="btnYaLogout" class="btn-modal btn-ya" style="font-weight: 700;">Ya</button>
+            <button type="button" id="btnBatalLogout" class="btn-modal btn-batal" style="font-weight: 700;">Batal</button>
                 </div>
             </div>
         </div>

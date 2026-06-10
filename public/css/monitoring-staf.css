@@ -1,0 +1,127 @@
+.container-staf {
+    margin: 0 auto;
+    padding: 40px;
+    width: 100%;
+    max-width: 1100px;
+    font-family: 'Inter', sans-serif;
+}
+
+.header-staf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header-left, .header-center, .header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-center {
+    justify-content: center;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.back-btn-bulat {
+    width: 45px;
+    height: 45px;
+    background-color: #2b3b1e; /* Hijau tua khas Seed Track */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.back-btn-bulat img {
+    width: 20px;
+    filter: brightness(0) invert(1); /* Biar panahnya jadi putih */
+}
+
+/* Search Bar & Filter */
+.search-box-staf {
+    display: flex;
+    align-items: center;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 8px 15px;
+    width: 250px;
+}
+
+.search-box-staf input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+    color: #475569;
+}
+
+.filter-btn-staf {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 8px 15px;
+    color: #475569;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Judul Atas Tabel */
+.title-data-mitra {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+/* ======================================================== */
+/* KOTAK PUTIH & TABEL STAF */
+/* ======================================================== */
+
+/* Kotak Putih Pembungkus Tabel */
+.card-table-staf {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Bayangan tipis banget */
+}
+
+/* Tabelnya */
+.table-staf {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-staf th {
+    text-align: left;
+    padding: 15px 10px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.table-staf td {
+    padding: 20px 10px;
+    color: #0f172a;
+    font-size: 15px;
+    font-weight: 600; /* Biar teksnya agak tebel kyak di gambar */
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Baris terakhir kaga usah pake garis bawah */
+.table-staf tr:last-child td {
+    border-bottom: none;
+}

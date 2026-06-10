@@ -17,7 +17,6 @@ body {
     overflow-x: hidden;
 }
 
-
 .sidebar {
     background-color: #A7B774;
     margin: 20px 0 20px 20px;
@@ -30,27 +29,20 @@ body {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     z-index: 50;
-
     position: sticky;
-    top: 20px; 
-    height: calc(100vh - 40px); 
-
-    overflow-x: hidden; /* teks pas sidebar ngecil */
-    overflow-y: auto;   /* bisa scroll atas-bawah khusus dalam sidebar */
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-.sidebar::-webkit-scrollbar {
-    display: none;
-}
+.sidebar::-webkit-scrollbar { display: none; }
 .sidebar {
-    -ms-overflow-style: none;  /* Buat Internet Explorer / Edge */
-    scrollbar-width: none;     /* Buat Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-/* melebar pas di hover */
-.sidebar:hover {
-    width: 260px;
-}
+.sidebar:hover { width: 260px; }
 
 .menu-item {
     display: flex;
@@ -62,16 +54,13 @@ body {
     margin-bottom: 8px;
     transition: all 0.3s;
     white-space: nowrap;
-    /* Biar teks gak turun ke bawah */
 }
 
-/* Lingkaran Ikon Default */
 .icon-circle {
     min-width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #2D3A2E;
-    /* Hijau gelap */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +74,7 @@ body {
     object-fit: contain;
 }
 
-/* kalo dipencet jadi kuning*/
-.menu-item.active .icon-circle {
-    background-color: #DFB744;
-}
+.menu-item.active .icon-circle { background-color: #DFB744; }
 
 .menu-text {
     font-size: 0.9rem;
@@ -97,9 +83,7 @@ body {
     transition: opacity 0.3s;
 }
 
-.menu-item.active .menu-text {
-    color: #2D3A2E;
-}
+.menu-item.active .menu-text { color: #2D3A2E; }
 
 .menu-text small {
     display: block;
@@ -113,7 +97,6 @@ body {
     transition-delay: 0.1s;
 }
 
-
 .logout-form {
     margin-top: auto;
     width: 100%;
@@ -126,14 +109,12 @@ body {
     text-align: left;
 }
 
-
 .main-content {
     flex: 1;
     padding: 30px 50px;
     display: flex;
     flex-direction: column;
 }
-
 
 .topbar {
     display: flex;
@@ -158,10 +139,7 @@ body {
     gap: 10px;
 }
 
-.topbar-logo img {
-    height: 35px;
-}
-
+.topbar-logo img { height: 35px; }
 
 .greeting {
     font-size: 1.4rem;
@@ -215,13 +193,8 @@ body {
     font-weight: 600;
 }
 
-.trend-up {
-    color: #22c55e;
-}
-
-.trend-down {
-    color: #ef4444;
-}
+.trend-up { color: #22c55e; }
+.trend-down { color: #ef4444; }
 
 .topbar-staf {
     display: flex;
@@ -318,91 +291,25 @@ body {
     transition: 0.3s;
 }
 
-.fab-add:hover {
-    background: #cda533;
-}
+.fab-add:hover { background: #cda533; }
 
-/* Container Overlay */
 .modal-overlay {
-    display: none; 
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    display: none;
     justify-content: center;
     align-items: center;
 }
 
-/* Kotak Putih Modal */
 .modal-box {
     background: white;
     padding: 50px 30px;
     border-radius: 35px;
-    width: 90%;
-    max-width: 480px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.modal-box p {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #000;
-    line-height: 1.4;
-}
-
-/* Container Tombol */
-.modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-.btn-modal {
-    padding: 15px 0;
-    min-width: 160px; 
-    border-radius: 50px; 
-    font-size: 1.2rem;
-    font-weight: 800;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s;
-}
-
-.btn-ya {
-    background-color: #39FF14;
-    color: black;
-}
-
-.btn-batal {
-    background-color: #FF0000;
-    color: white;
-}
-
-.btn-modal:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10000; /* Biar selalu di paling depan nutupin sidebar & konten */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Kotak putih pop-up */
-.modal-box {
-    background: white;
-    padding: 50px 30px;
-    border-radius: 35px; /* Bikin ujungnya melengkung halus */
     width: 90%;
     max-width: 480px;
     text-align: center;
@@ -417,18 +324,16 @@ body {
     line-height: 1.4;
 }
 
-/* Penjajaran tombol biar sejajar */
 .modal-buttons {
     display: flex;
     justify-content: center;
     gap: 25px;
 }
 
-/* Gaya dasar tombol (Pill-shaped) */
 .btn-modal {
     padding: 15px 0;
-    min-width: 160px; /* Biar tombolnya lebar dan sama rata */
-    border-radius: 50px; /* Bikin bentuk lonjong kayak kapsul */
+    min-width: 160px;
+    border-radius: 50px;
     font-size: 1.2rem;
     font-weight: 800;
     border: none;
@@ -436,25 +341,100 @@ body {
     transition: transform 0.2s, opacity 0.2s;
 }
 
-/* Tombol Yakin (Hijau Stabilo) */
-.btn-ya {
-    background-color: #39FF14;
-    color: black;
+.btn-ya { background-color: #39FF14; color: black; }
+.btn-batal { background-color: #FF0000; color: black; }
+.btn-modal:hover { opacity: 0.9; transform: scale(1.03); }
+.btn-modal:active { transform: scale(0.95); }
+
+
+/* ==========================================================================
+   MEDIA QUERY SAKTI: BUAT DASHBOARD (TABLET & HP)
+   ========================================================================== */
+
+/* 1. ATURAN BUAT TABLET (Layar di bawah 1024px) */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 25px; /* Ngurangin ruang kosong */
+    }
+
+    /* Kartu ringkasan dibikin pas dua kolom di tablet */
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* Tombol Batal (Merah) */
-.btn-batal {
-    background-color: #FF0000;
-    color: white;
-}
+/* 2. ATURAN BUAT HP / SMARTPHONE (Layar di bawah 768px) */
+@media (max-width: 768px) {
+    /* Ilangin sidebar (Nanti bisa diganti pake tombol menu hamburger kalo mau) */
+    .sidebar {
+        display: none;
+    }
 
-/* Animasi kalau kena kursor */
-.btn-modal:hover {
-    opacity: 0.9;
-    transform: scale(1.03);
-}
+    .main-content {
+        padding: 20px 15px; /* Pas di jempol */
+    }
 
-/* Animasi kalau diklik */
-.btn-modal:active {
-    transform: scale(0.95);
+    /* Topbar ditumpuk bawah */
+    .topbar {
+        flex-direction: column-reverse; /* Logo di atas, sapaan di bawah */
+        gap: 20px;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+
+    .topbar-logo {
+        align-self: flex-end; /* Logo ngantri di kanan atas layar HP */
+    }
+
+    /* Search bar dibikin full layar */
+    .top-action-bar {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .btn-filter {
+        width: 100%;
+    }
+
+    /* Cards numpuk 1 kolom ke bawah */
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tombol Fab dikecilin dikit */
+    .fab-add {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    /* Pop-up modal biar kaga sumpek */
+    .modal-box {
+        padding: 30px 20px;
+    }
+
+    .modal-box p {
+        font-size: 1.1rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-modal {
+        width: 100%;
+        min-width: unset;
+    }
 }
