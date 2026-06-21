@@ -29,7 +29,7 @@
         <a href="{{route('produk.admin')}}" class="menu-item"><div class="icon-circle"><img src="{{ url('images/keperluandashboard/katalogg.png') }}" alt="Katalog"></div><div class="menu-text">Katalog Produk</div></a>
         <a href="{{ route('monitoring.admin') }}" class="menu-item"><div class="icon-circle"><img src="{{ url('images/keperluandashboard/monitoring.png') }}" alt="Monitoring"></div><div class="menu-text">Monitoring Lahan</div></a>
         <a href="{{ route('transaksi.index') }}" class="menu-item"><div class="icon-circle"><img src="{{ url('images/keperluandashboard/transaksi.png') }}" alt="Transaksi"></div><div class="menu-text">Transaksi</div></a>
-        <a href="{{ route('pengeluaran.index') }}" class="menu-item"><div class="icon-circle"><img src="{ url('images/keperluandashboard/pengeluaran.png') }}" alt="Pengeluaran"></div><div class="menu-text">Pengeluaran</div></a>
+        <a href="{{ route('pengeluaran.index') }}" class="menu-item"><div class="icon-circle"><img src="{{  url('images/keperluandashboard/pengeluaran.png')  }}" alt="Pengeluaran"></div><div class="menu-text">Pengeluaran</div></a>
         <form action="{{ route('logout') }}" method="POST" id="formLogout" class="logout-form">
             @csrf
             <button type="button" class="menu-item btn-logout" id="btnLogoutTrigger">

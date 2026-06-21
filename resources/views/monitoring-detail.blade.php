@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="{{ url('css/monitoring.css') }}">
     <link rel="stylesheet" href="{{ url('css/monitoring-staf.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/tambah-produk.css') }}">
 </head>
 <body style="background-color: #f8fafc; margin: 0; padding: 0;">
@@ -43,13 +42,23 @@
             Riwayat Monitoring - <span style="margin-left: 6px; color: #84a96b;">{{ $mitra->nama_mitra }}</span>
         </div>
 
-        <div class="riwayat-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
-            @forelse($kumpulanSiklus as $siklus)
+        {{-- 👇 INI YANG DIRUBAH BIAR TERSUSUN KE BAWAH 👇 --}}
+        <div class="riwayat-grid" style="display: flex; flex-direction: column; gap: 25px;">
+            @forelse($kumpulanSiklus as $index => $siklus)
                 @php
+                    // Cuma ambil data monitoring yang paling akhir di siklus ini
                     $r = $siklus->last();
+                    $nomorSiklus = $index + 1;
                 @endphp
+
                 <a href="{{ route('editmonitoring', $r->id_monitoring) }}" class="riwayat-link" style="text-decoration: none; color: inherit; width: 350px;">
-                    <div class="riwayat-card" style="background: #f1f5f9; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0;">
+                    <div class="riwayat-card" style="background: #f1f5f9; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; position: relative;">
+
+                        {{-- Label Siklus Tanam --}}
+                        <div style="position: absolute; top: 12px; right: 12px; background: #eab308; color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            Siklus #{{ $nomorSiklus }}
+                        </div>
+
                         <div class="riwayat-header" style="padding: 15px 20px; border-bottom: 1px solid #cbd5e1; display: flex; align-items: center; gap: 10px; font-weight: 600; color: #0f172a;">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                             {{ \Carbon\Carbon::parse($r->tgl_survei)->translatedFormat('d F Y') }}

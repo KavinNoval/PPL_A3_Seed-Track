@@ -37,7 +37,7 @@
                     <input type="text" name="nama_mitra"
                            value="{{ old('nama_mitra', $mitra->nama_mitra) }}" required
                            class="@error('nama_mitra') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('nama_mitra') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -47,7 +47,7 @@
                     <input type="text" name="no_telp"
                            value="{{ old('no_telp', $mitra->no_telp) }}" required
                            class="@error('no_telp') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('no_telp') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -93,7 +93,7 @@
                     <input type="text" name="jalan_lahan"
                            value="{{ old('jalan_lahan', $mitra->jalan_lahan) }}" required
                            class="@error('jalan_lahan') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('jalan_lahan') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -103,7 +103,7 @@
                     <input type="text" name="blok_sawah"
                            value="{{ old('blok_sawah', $mitra->blok_sawah) }}" required
                            class="@error('blok_sawah') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('blok_sawah') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -113,7 +113,7 @@
                     <input type="number" name="est_benih"
                            value="{{ old('est_benih', $mitra->est_benih) }}" required
                            class="@error('est_benih') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('est_benih') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -123,7 +123,7 @@
                     <input type="number" name="est_jmlh_panen"
                            value="{{ old('est_jmlh_panen', $mitra->est_jmlh_panen) }}" required
                            class="@error('est_jmlh_panen') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('est_jmlh_panen') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -133,7 +133,7 @@
                     <input type="number" step="0.01" name="luas_lahan"
                            value="{{ old('luas_lahan', $mitra->luas_lahan) }}" required
                            class="@error('luas_lahan') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('luas_lahan') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>
@@ -143,7 +143,7 @@
                     <input type="date" name="tgl_bergabung"
                            value="{{ old('tgl_bergabung', $mitra->tgl_bergabung) }}" required
                            class="@error('tgl_bergabung') is-invalid @enderror"
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')"
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                     @error('tgl_bergabung') <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">*{{ $message }}</div> @enderror
                 </div>

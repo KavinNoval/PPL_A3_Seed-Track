@@ -13,7 +13,7 @@
 
 body {
 
-    background: radial-gradient(circle at top right, #fef4ce 0%, #f4f4f4 30%), 
+    background: radial-gradient(circle at top right, #fef4ce 0%, #f4f4f4 30%),
 
                 radial-gradient(circle at bottom right, #d4e0b0 0%, #f4f4f4 40%);
 
@@ -214,9 +214,9 @@ body {
     filter: brightness(0) invert(1); /* Bikin icon jadi putih */
 
 }
-
 /* ========================================= */
-/* CSS BUAT MODAL / POP-UP LOGOUT (VERSI NEON) */
+/* CSS MODAL / POP-UP LOGOUT (VERSI NEON)    */
+/* (Diambil dari CSS Admin biar seragam)     */
 /* ========================================= */
 
 .modal-overlay {
@@ -225,60 +225,63 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4); 
-    display: flex;
+    background: rgba(0, 0, 0, 0.6); /* Sedikit lebih gelap biar neonnya nyala */
+    display: none; /* Defaultnya disembunyiin, nanti JS yang nampilin (display: flex) */
     justify-content: center;
     align-items: center;
-    z-index: 9999; 
+    z-index: 10000;
 }
 
 .modal-box {
-    background-color: white;
-    padding: 40px 60px;
-    border-radius: 30px; 
+    background: white;
+    padding: 50px 30px;
+    border-radius: 35px;
+    width: 90%;
+    max-width: 480px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    min-width: 450px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .modal-box p {
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 40px;
     color: #000;
-    margin-bottom: 35px;
     line-height: 1.4;
 }
 
 .modal-buttons {
     display: flex;
     justify-content: center;
-    gap: 40px; 
+    gap: 25px;
 }
 
 .btn-modal {
-    width: 140px; 
-    padding: 12px 0;
-    border: 1px solid #666; 
-    border-radius: 50px; 
-    font-size: 18px;
-    font-weight: 500;
+    padding: 15px 0;
+    min-width: 160px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: none;
     cursor: pointer;
-    color: #000; 
-    transition: 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
 .btn-ya {
-    background-color: #39ff14; 
-}
-
-.btn-ya:hover {
-    background-color: #32cd32; 
+    background-color: #39FF14; /* Ijo Neon */
+    color: black;
 }
 
 .btn-batal {
-    background-color: #ff0000; 
+    background-color: #FF0000; /* Merah Neon */
+    color: black;
 }
 
-.btn-batal:hover {
-    background-color: #cc0000; 
+.btn-modal:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+.btn-modal:active {
+    transform: scale(0.95);
 }

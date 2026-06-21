@@ -15,7 +15,10 @@
             <div class="icon-circle">
                 <img src="{{ url('images/keperluandashboard/dashboardlg.png') }}" alt="Dashboard">
             </div>
-            <div class="menu-text">Dashboard</div>
+            <div class="menu-text">
+            Dashboard
+            <small>Laporan & Monitoring</small>
+        </div>
         </a>
 
         <a href="{{ route('profil.perusahaan') }}" class="menu-item">

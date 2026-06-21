@@ -73,10 +73,10 @@ class PengeluaranController extends Controller
 
         // Logika Redirect: Staf balik ke staf, Admin balik ke admin
         if (Auth::check() && (Auth::user()->role == 'Staff Gudang' || Auth::user()->role == 'Staf Gudang')) {
-            return redirect()->route('pengeluaran.gudang')->with('success', 'Data pengeluaran berhasil ditambahkan!');
+            return redirect()->route('pengeluaran.gudang')->with('success', 'Data pengeluaran berhasil ditambahkan');
         }
 
-        return redirect()->route('pengeluaran.index')->with('success', 'Data pengeluaran berhasil ditambahkan!');
+        return redirect()->route('pengeluaran.index')->with('success', 'Data pengeluaran berhasil ditambahkan');
     }
 
     // ==========================================
@@ -118,6 +118,6 @@ class PengeluaranController extends Controller
 
         $p->update($data);
 
-        return redirect()->route('pengeluaran.index')->with('success', 'Data pengeluaran berhasil diubah!');
+        return redirect()->route('pengeluaran.index')->with('success', 'Data pengeluaran berhasil diubah');
     }
 }

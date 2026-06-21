@@ -22,6 +22,20 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </a>
 
+        {{-- TOAST NOTIFIKASI BERHASIL (DARI CONTROLLER) --}}
+        @if(session('success'))
+            <div class="toast-alert toast-success show" id="toast-sukses">
+                ✅ {{ session('success') }}
+            </div>
+            <script>setTimeout(() => { document.getElementById('toast-sukses').classList.remove('show'); }, 3000);</script>
+        @endif
+
+        {{-- TOAST NOTIFIKASI BATAL (DARI JS) --}}
+        <div class="toast-alert toast-danger" id="toast-batal">
+            Data pengeluaran batal diubah
+        </div>
+
+        {{-- ERROR DARI SERVER --}}
         @if(session('error'))
             <div style="background: #ff4d4f; color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-weight: bold;">
                 {{ session('error') }}
@@ -63,8 +77,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Deskripsi Pengeluaran</label>
-                    <textarea name="keterangan" class="form-input" rows="4">{{ $pengeluaran->keterangan }}</textarea>
+                    {{-- DITAMBAHIN REQUIRED DI SINI BIAR BISA DICEK JS --}}
+                    <label>Deskripsi Pengeluaran<span>*</span></label>
+                    <textarea name="keterangan" class="form-input" rows="4" required>{{ $pengeluaran->keterangan }}</textarea>
                 </div>
 
                 <div class="form-group">

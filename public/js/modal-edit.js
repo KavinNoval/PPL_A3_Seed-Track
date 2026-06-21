@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (formEdit && modalEdit) {
         formEdit.addEventListener('submit', function(e) {
-            // Kalau form nggak valid (masih ada required kosong), biarin HTML5 jalan
             if (!formEdit.checkValidity()) return;
 
             // Kalau valid, tahan submit, munculin modal

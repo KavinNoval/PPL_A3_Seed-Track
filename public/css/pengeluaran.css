@@ -228,9 +228,41 @@
     font-weight: 600;
 }
 
+/* ===== OBAT JINAKIN PAGINATION LARAVEL YANG NGAMUK ===== */
 .pagination-container {
-    padding: 16px 20px;
-    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination-container svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.pagination-container nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.pagination-container nav > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.pagination-container a {
+    color: #2D3A2E;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pagination-container a:hover {
+    color: #eab308;
 }
 
 /* ===== FAB TAMBAH (TOMBOL KUNING) ===== */
@@ -302,8 +334,12 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
 }
 
+/* 👇👇 INI DIA JANGKARNYA BOSKU (position: relative) 👇👇 */
 .form-group-tambah {
-    margin-bottom: 16px; display: flex; flex-direction: column;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .form-group-tambah label {
@@ -367,17 +403,18 @@
 }
 
 .toast-alert.show { opacity: 1; transform: translateX(0); }
-.toast-success    { background-color: #A3B87A; }
+.toast-success    { background-color: #48bb78; }
 .toast-danger     { background-color: #ef4444; }
 
-/* ===== TOOLTIP VALIDASI ORANYE (YANG KETINGGALAN) ===== */
+/* ===== TOOLTIP VALIDASI ORANYE (FIX POSISI & KASTA) ===== */
 .custom-tooltip-validasi {
     position: absolute;
-    bottom: -40px;
+    top: 100%; /* Biar nempel persis di bawah kotak input */
     left: 0;
+    margin-top: 8px;
     background: white;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #f97316; /* Warna oranye */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     padding: 8px 12px;
     border-radius: 6px;
     display: flex;
@@ -386,8 +423,9 @@
     font-size: 0.8rem;
     font-family: 'Inter', sans-serif;
     color: #1e293b;
-    z-index: 100;
+    z-index: 999999 !important; /* WAJIB KASTA TERTINGGI BIAR GAK KETUMPUK */
     animation: munculTooltip 0.2s ease-out forwards;
+    white-space: nowrap; /* Biar teksnya memanjang rapi */
 }
 
 .custom-tooltip-validasi::before {
@@ -398,8 +436,8 @@
     width: 10px;
     height: 10px;
     background: white;
-    border-top: 1px solid #e2e8f0;
-    border-left: 1px solid #e2e8f0;
+    border-top: 1px solid #f97316; /* Warna oranye */
+    border-left: 1px solid #f97316; /* Warna oranye */
     transform: rotate(45deg);
 }
 
@@ -419,6 +457,70 @@
 @keyframes munculTooltip {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   STYLING MODAL KONFIRMASI SIMPAN (YA/BATAL)
+   ========================================== */
+.modal-box-konfirmasi {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 320px;
+    width: 100%;
+}
+
+.modal-text-konfirmasi {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.modal-buttons-konfirmasi {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Tombol Ya (Warna Hijau Terang) */
+.btn-konfirmasi-ya {
+    background-color: #00ff00;
+    color: black;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-konfirmasi-ya:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+/* Tombol Batal (Warna Merah Terang) */
+.btn-konfirmasi-batal {
+    background-color: #ff0000;
+    color: black;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-konfirmasi-batal:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
 /* ===== RESPONSIVE ===== */

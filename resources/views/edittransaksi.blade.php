@@ -30,7 +30,7 @@
         @endif
 
         <div class="form-card">
-            <form action="{{ route('transaksi.update', $transaksi->id_transaksi) }}" method="POST" id="formTransaksi">
+            <form action="{{ route('transaksi.update', $transaksi->id_transaksi) }}" method="POST" id="formTransaksi" novalidate>
                 @csrf
 
                 <div class="card-header">

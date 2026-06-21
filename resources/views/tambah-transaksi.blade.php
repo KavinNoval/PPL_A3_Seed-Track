@@ -27,14 +27,33 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </button>
 
-        @if(session('error') || $errors->any())
-            <div class="toast-alert toast-danger show" id="toast-error">
-                Data Kios/Mitra dengan nomor tersebut tidak ditemukan di database!
+        {{-- 👇👇👇 INI OBAT PENAWAR JEBAKAN BATMANNYA BOSKU 👇👇👇 --}}
+
+        {{-- Notif buat error dari Controller (misal Kios gak ketemu) --}}
+        @if(session('error'))
+            <div class="toast-alert toast-danger show" id="toast-session-error" style="background-color: #ef4444; padding: 15px; border-radius: 12px; color: white; margin-bottom: 20px; font-weight: 700; z-index: 9999;">
+                {{ session('error') }}
             </div>
             <script>
-                setTimeout(() => { document.getElementById('toast-error').classList.remove('show'); }, 3000);
+                setTimeout(() => { document.getElementById('toast-session-error').classList.remove('show'); }, 4000);
             </script>
         @endif
+
+        {{-- Notif buat error validasi form (misal ada kolom wajib yg kosong) --}}
+        @if($errors->any())
+            <div class="toast-alert toast-danger show" id="toast-validation-error" style="background-color: #ef4444; padding: 15px; border-radius: 12px; color: white; margin-bottom: 20px; font-weight: 700; z-index: 9999;">
+                <ul style="margin: 0; padding-left: 20px;">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <script>
+                setTimeout(() => { document.getElementById('toast-validation-error').classList.remove('show'); }, 5000);
+            </script>
+        @endif
+
+        {{-- 👆👆👆 BATAS KODINGAN BARU 👆👆👆 --}}
 
         <div class="toast-alert toast-danger" id="toast-batal">
             Data transaksi batal disimpan

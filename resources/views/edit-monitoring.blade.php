@@ -5,33 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Monitoring - Seed Track</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('css/monitoring.css') }}">
-
-    <style>
-        .upload-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-upload-option {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            background: #16a34a;
-            color: white;
-            transition: 0.2s;
-        }
-
-        .btn-upload-option:hover {
-            opacity: 0.9;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url('css/monitoring.css') }}?v={{ time() }}">
 </head>
-<body class="body-form-monitoring">
+<body class="body-form-monitoring tanpa-sidebar" style="margin: 0; background-color: #f8fafc;">
+
+    {{-- LOGIKA DETEKSI DATA BARU BUAT NGE-UNLOCK FORM FASE MASAK --}}
+    @php
+        $isBaru = empty($monitoring->id_monitoring);
+    @endphp
 
     <div class="container-form">
         <div class="header-form-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;">
@@ -98,7 +79,9 @@
             @endif
         </div>
 
-        <div class="laporan-title" style="margin-top: 30px;">Laporan Monitoring</div>
+        <div class="laporan-title" style="margin-top: 30px;">
+            {{ $isBaru ? 'Tambah Laporan Monitoring' : 'Laporan Monitoring' }}
+        </div>
 
         <form id="formEditMonitoring" action="{{ $monitoring->id_monitoring ? route('updatemonitoring') : route('simpanmonitoring') }}" method="POST" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
             @csrf
@@ -111,12 +94,12 @@
                 <div>
                     <div class="form-group">
                         <label>Tgl Survei <span style="color: red;">*</span></label>
-                        <input type="date" name="tgl_survei" class="input-gray input-lock mode-view wajib-isi" value="{{ $monitoring->tgl_survei }}" disabled required>
+                        <input type="date" name="tgl_survei" class="input-gray wajib-isi {{ $isBaru ? '' : 'input-lock mode-view' }}" value="{{ $monitoring->tgl_survei }}" {{ $isBaru ? '' : 'disabled' }} required>
                     </div>
 
                     <div class="form-group">
                         <label>Kondisi Tanaman <span style="color: red;">*</span></label>
-                        <select name="kondisi_tanaman" class="input-gray input-lock mode-view wajib-isi" disabled required>
+                        <select name="kondisi_tanaman" class="input-gray wajib-isi {{ $isBaru ? '' : 'input-lock mode-view' }}" {{ $isBaru ? '' : 'disabled' }} required>
                             <option value="Sehat" {{ $monitoring->kondisi_tanaman == 'Sehat' ? 'selected' : '' }}>Sehat</option>
                             <option value="Terserang Hama" {{ $monitoring->kondisi_tanaman == 'Terserang Hama' ? 'selected' : '' }}>Terserang Hama</option>
                             <option value="Kekurangan Air" {{ $monitoring->kondisi_tanaman == 'Kekurangan Air' ? 'selected' : '' }}>Kekurangan Air</option>
@@ -125,18 +108,18 @@
 
                     <div class="form-group">
                         <label>Kondisi Lapangan <span style="color: red;">*</span></label>
-                        <textarea name="kondisi_lapangan" class="input-gray input-lock mode-view wajib-isi" rows="5" disabled required>{{ $monitoring->kondisi_lapangan }}</textarea>
+                        <textarea name="kondisi_lapangan" class="input-gray wajib-isi {{ $isBaru ? '' : 'input-lock mode-view' }}" rows="5" {{ $isBaru ? '' : 'disabled' }} required>{{ $monitoring->kondisi_lapangan }}</textarea>
                     </div>
                 </div>
 
                 <div>
                     <div class="form-group">
                         <label>Perkiraan Panen <span style="color: red;">*</span></label>
-                        <input type="date" name="perkiraan_panen" class="input-gray input-lock mode-view wajib-isi" value="{{ $monitoring->perkiraan_panen }}" disabled required>
+                        <input type="date" name="perkiraan_panen" class="input-gray wajib-isi {{ $isBaru ? '' : 'input-lock mode-view' }}" value="{{ $monitoring->perkiraan_panen }}" {{ $isBaru ? '' : 'disabled' }} required>
                     </div>
                     <div class="form-group">
                         <label>Est Hasil Panen <span style="color: red;">*</span></label>
-                        <input type="text" name="est_hasil_panen" class="input-gray input-lock mode-view wajib-isi" value="{{ $monitoring->est_hasil_panen }}" disabled required>
+                        <input type="text" name="est_hasil_panen" class="input-gray wajib-isi {{ $isBaru ? '' : 'input-lock mode-view' }}" value="{{ $monitoring->est_hasil_panen }}" {{ $isBaru ? '' : 'disabled' }} required>
                     </div>
 
                     <div class="form-group">
@@ -156,14 +139,9 @@
                                  style="display: {{ $monitoring->foto_bukti ? 'block' : 'none' }}; width: 100%; max-height: 220px; object-fit: contain; border-radius: 6px;">
                         </div>
 
-                        <div class="upload-options mode-view-hide" style="display: none; width: 100%;">
-                            <button type="button" class="btn-upload-option" onclick="bukaGaleri()">
-                                Pilih dari Galeri
-                            </button>
-
-                            <button type="button" class="btn-upload-option" onclick="bukaKamera()">
-                                Ambil Foto
-                            </button>
+                        <div class="upload-options {{ $isBaru ? '' : 'mode-view-hide' }}" style="display: {{ $isBaru ? 'flex' : 'none' }}; width: 100%;">
+                            <button type="button" class="btn-upload-option" id="btnPilihGaleri">Pilih dari Galeri</button>
+                            <button type="button" class="btn-upload-option" id="btnAmbilFoto">Ambil Foto</button>
                         </div>
 
                         <input type="file" id="foto_upload_utama" name="foto_bukti" accept="image/*" style="display: none;" onchange="sihirPreviewEdit(event)">
@@ -172,8 +150,10 @@
             </div>
 
             <div class="btn-submit-wrap">
-                <button type="button" id="btn-buka-edit" class="btn-submit">UBAH</button>
-                <button type="button" id="btn-simpan-perubahan" class="btn-submit" style="display: none; background-color: #4dfd00; color: black;">SIMPAN PERUBAHAN</button>
+                <button type="button" id="btn-buka-edit" class="btn-submit" style="display: {{ $isBaru ? 'none' : 'block' }};">UBAH</button>
+                <button type="button" id="btn-simpan-perubahan" class="btn-submit" style="display: {{ $isBaru ? 'block' : 'none' }}; background-color: #4dfd00; color: black;">
+                    {{ $isBaru ? 'SIMPAN' : 'SIMPAN PERUBAHAN' }}
+                </button>
             </div>
         </form>
     </div>

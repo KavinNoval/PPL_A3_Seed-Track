@@ -11,10 +11,10 @@
         <h1>Edit Data Staf</h1>
         <img src="{{ asset('images/Seed Track - Text.png') }}" alt="Seed Track">
     </div>
-    
+
     <div class="content-form">
         <a href="{{ route('data.staf') }}" class="btn-back">&larr;</a>
-        
+
         <form action="{{ route('updatestaf', $staf->id_akun) }}" method="POST" class="form-card" id="formEditStaf">
             @csrf
             <div id="pesanBatal" style="display: none; position: fixed; top: 90px; right: 30px; z-index: 9999; background-color: #ff0000; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; box-shadow: 0 10px 15px rgba(0,0,0,0.2); border-left: 6px solid #8b0000;">
@@ -24,42 +24,42 @@
                 <div class="form-group">
                     <label class="wajib-isi">Username</label>
                     <input type="text" name="username" value="{{ $staf->username }}" required
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                 </div>
-                
+
                 <div class="form-group">
                     <label class="wajib-isi">Password</label>
                     <input type="text" name="password" value="{{ $staf->password }}" required
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                 </div>
-                
+
                 <div class="form-group">
                     <label class="wajib-isi">Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" value="{{ $staf->nama_lengkap }}" required
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                 </div>
-                
+
                 <div class="form-group">
                     <label class="wajib-isi">Nomor Telepon</label>
                     <input type="text" name="no_telp" value="{{ $staf->no_telp }}" required
-                           oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                           oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                            oninput="this.setCustomValidity('')">
                            @error('no_telp')
                             <span style="color: red; font-size: 12px; margin-top: 5px; display: block;">*{{ $message }}</span>
                             @enderror
                 </div>
-                
+
                 <div class="form-group">
                     <label class="wajib-isi">Role</label>
                     @if(strtolower(trim($staf->role)) == 'admin')
-                        <input type="text" name="role" value="{{ $staf->role }}" readonly 
+                        <input type="text" name="role" value="{{ $staf->role }}" readonly
                                style="background-color: #e9ecef; cursor: not-allowed; color: #6c757d; pointer-events: none;">
                     @else
                         <select name="role" required
-                                oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                                oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                                 oninput="this.setCustomValidity('')">
                             <option value="Admin" {{ strtolower(trim($staf->role)) == 'admin' ? 'selected' : '' }}>Admin</option>
                             <option value="Staff Lapang" {{ strtolower(trim($staf->role)) == 'staff lapang' ? 'selected' : '' }}>Staf Lapang</option>
@@ -67,22 +67,22 @@
                         </select>
                     @endif
                 </div>
-                
+
                 <div class="form-group">
                     <label class="wajib-isi">Status</label>
                     @if(strtolower(trim($staf->role)) == 'admin')
-                        <input type="text" name="status" value="{{ $staf->status ?? 'Aktif' }}" readonly 
+                        <input type="text" name="status" value="{{ $staf->status ?? 'Aktif' }}" readonly
                                style="background-color: #e9ecef; cursor: not-allowed; color: #6c757d; pointer-events: none;">
                     @else
                         <select name="status" required
-                                oninvalid="this.setCustomValidity('Semua informasi harus lengkap')" 
+                                oninvalid="this.setCustomValidity('Semua informasi harus diisi')"
                                 oninput="this.setCustomValidity('')">
                             <option value="Aktif" {{ $staf->status == 'Aktif' ? 'selected' : '' }}>Aktif</option>
                             <option value="Non Aktif" {{ $staf->status == 'Non Aktif' ? 'selected' : '' }}>Non Aktif</option>
                         </select>
                     @endif
                 </div>
-                
+
                 <button type="submit" class="btn-simpan" style="width: 100%;">SIMPAN PERUBAHAN</button>
             </div>
         </form>
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="{{ asset('js/modal-edit.js') }}"></script>
 </body>
 </html>

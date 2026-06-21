@@ -6,13 +6,16 @@
     <title>Pengeluaran - Seed Track</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pengeluaran.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pengeluaran.css') }}?v={{ time() }}">
 </head>
 <body class="body-pengeluaran">
     <div class="sidebar">
         <a href="{{ route('dashboard.admin') }}" class="menu-item">
             <div class="icon-circle"><img src="{{ url('images/keperluandashboard/dashboardlg.png') }}"></div>
-            <div class="menu-text">Dashboard</div>
+            <div class="menu-text">
+                Dashboard
+                <small>Laporan & Monitoring</small>
+            </div>
         </a>
         <a href="{{ route('profil.perusahaan') }}" class="menu-item">
             <div class="icon-circle"><img src="{{ url('images/keperluandashboard/profilperusahaan.png') }}"></div>
@@ -84,24 +87,31 @@
             <div class="filter-bar">
                 <div class="filter-search">
                     <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Cari...">
+                    <input type="text" id="inputCari" placeholder="Cari...">
                 </div>
 
-                <select class="filter-select">
+                <select class="filter-select" id="filterKategori">
                     <option value="">Semua Kategori</option>
                     <option value="Distribusi">Distribusi</option>
                     <option value="Operasional Kantor">Operasional Kantor</option>
                     <option value="Pembelian Aset">Pembelian Aset</option>
                 </select>
 
-                <select class="filter-select">
-                    <option value="">Bulan Ini</option>
+                <select class="filter-select" id="filterBulan">
+                    <option value="">Semua Bulan</option>
+                    <option value="jan">Januari</option>
+                    <option value="feb">Februari</option>
+                    <option value="mar">Maret</option>
+                    <option value="apr">April</option>
+                    <option value="mei">Mei</option>
+                    <option value="jun">Juni</option>
+                    <option value="jul">Juli</option>
+                    <option value="ags">Agustus</option>
+                    <option value="sep">September</option>
+                    <option value="okt">Oktober</option>
+                    <option value="nov">November</option>
+                    <option value="des">Desember</option>
                 </select>
-
-                <div class="spacer-flex"></div>
-
-                <button class="filter-btn-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg></button>
-                <button class="filter-btn-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
             </div>
 
             <div class="table-responsive">
@@ -116,7 +126,7 @@
                             <th class="text-center">AKSI</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody-pengeluaran">
                         @forelse($pengeluarans as $p)
                             <tr>
                                 <td class="td-tanggal">{{ \Carbon\Carbon::parse($p->tgl_pengeluaran)->translatedFormat('d M Y') }}</td>
@@ -132,7 +142,15 @@
                                 </td>
                                 <td class="text-center">
                                     @if($p->bukti_nota)
-                                        <button class="btn-icon" title="Lihat Nota"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></button>
+                                        <button class="btn-icon" title="Lihat Nota" onclick="lihatNota('{{ asset('foto_pengeluaran/' . $p->bukti_nota) }}')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14 2 14 8 20 8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                                <polyline points="10 9 9 9 8 9"/>
+                                            </svg>
+                                        </button>
                                     @else
                                         <span class="strip-kosong">-</span>
                                     @endif
@@ -154,7 +172,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="pagination-container">{{ $pengeluarans->links() }}</div>
         </div>
 
         <button type="button" class="fab-tambah" title="Tambah Pengeluaran" onclick="bukaModalTambah()">
@@ -182,11 +199,13 @@
                 <div class="modal-tambah-body">
                     <div class="form-row-2">
                         <div class="form-group-tambah">
-                            <label>TANGGAL PENGELUARAN</label>
+                            {{-- 👇 Tambahan Bintang Merah 👇 --}}
+                            <label>TANGGAL PENGELUARAN <span style="color: #ef4444;">*</span></label>
                             <input type="date" name="tgl_pengeluaran" class="input-tambah" required>
                         </div>
                         <div class="form-group-tambah">
-                            <label>KATEGORI</label>
+                            {{-- 👇 Tambahan Bintang Merah 👇 --}}
+                            <label>KATEGORI <span style="color: #ef4444;">*</span></label>
                             <select name="id_akun" class="input-tambah" required>
                                 <option value="" disabled selected>Pilih Kategori</option>
                                 <option value="2">Distribusi</option>
@@ -196,19 +215,21 @@
                         </div>
                     </div>
                     <div class="form-group-tambah">
-                        <label>NAMA PENGELUARAN</label>
+                        {{-- 👇 Tambahan Bintang Merah 👇 --}}
+                        <label>NAMA PENGELUARAN <span style="color: #ef4444;">*</span></label>
                         <input type="text" name="nama_pengeluaran" class="input-tambah" placeholder="Contoh: Sewa Truk Logistik..." required>
                     </div>
                     <div class="form-group-tambah">
-                        <label>NOMINAL (RP)</label>
+                        {{-- 👇 Tambahan Bintang Merah 👇 --}}
+                        <label>NOMINAL (RP) <span style="color: #ef4444;">*</span></label>
                         <div class="input-rp-wrap">
                             <span class="rp-prefix">Rp</span>
                             <input type="number" name="nominal" class="input-tambah input-with-rp" placeholder="0" required>
                         </div>
                     </div>
                     <div class="form-group-tambah">
-                        <label>DESKRIPSI</label>
-                        <textarea name="keterangan" class="input-tambah" rows="3" placeholder="Tuliskan detail pengeluaran..."></textarea>
+                        <label>DESKRIPSI <span style="color: #ef4444;">*</span></label>
+                        <textarea name="keterangan" class="input-tambah" rows="3" placeholder="Tuliskan detail pengeluaran..." required></textarea>
                     </div>
                     <div class="form-group-tambah">
                         <label>UPLOAD BUKTI PEMBAYARAN</label>
@@ -225,11 +246,31 @@
                     </div>
                 </div>
                 <div class="modal-tambah-footer">
-                    <button type="submit" class="btn-simpan-hijau">Simpan</button>
+                    <button type="button" id="btn-trigger-simpan" class="btn-simpan-hijau">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
-    <script src="{{ asset('js/pengeluaran.js') }}"></script>
+
+    {{-- MODAL LIHAT NOTA --}}
+    <div id="modalLihatNota" class="modal-overlay" style="display: none;" onclick="tutupNota()">
+        <div style="position: relative; max-width: 90%; max-height: 90vh; background: transparent; display: flex; flex-direction: column; align-items: center;" onclick="event.stopPropagation();">
+            <button type="button" onclick="tutupNota()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">&times;</button>
+            <img id="gambarNotaBesar" src="" alt="Bukti Nota" style="max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: white;">
+        </div>
+    </div>
+
+    {{-- MODAL KONFIRMASI --}}
+    <div id="modalKonfirmasiSimpan" class="modal-overlay" style="display: none; z-index: 9999;">
+        <div class="modal-box-konfirmasi">
+            <p class="modal-text-konfirmasi">Apakah ingin<br>menambah pengeluaran?</p>
+            <div class="modal-buttons-konfirmasi">
+                <button type="button" id="btnYaSimpan" class="btn-konfirmasi-ya">Ya</button>
+                <button type="button" id="btnBatalSimpan" class="btn-konfirmasi-batal">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/pengeluaran.js') }}?v={{ time() }}"></script>
 </body>
 </html>

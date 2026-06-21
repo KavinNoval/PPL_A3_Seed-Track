@@ -1,3 +1,4 @@
+/* ===== LAYOUT UTAMA ===== */
 .profil-wrapper {
     max-width: 1000px;
     margin: 0 auto;  /* Biar otomatis ke tengah layar */
@@ -9,7 +10,7 @@
     font-size: 20px;
     font-weight: 700;
     margin: 0 auto 24px auto; /* Tambahin ini biar judul ke tengah */
-    max-width: 900px;         /* Tambahin ini biar sejajar sama kotaknya */
+    max-width: 900px;        /* Tambahin ini biar sejajar sama kotaknya */
 }
 
 .edit-container {
@@ -18,7 +19,7 @@
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     max-width: 900px;
-    margin: 0 auto;           /* INI MANTRA AJAIBNYA BIAR KOTAK KE TENGAH */
+    margin: 0 auto;          /* INI MANTRA AJAIBNYA BIAR KOTAK KE TENGAH */
 }
 .edit-section {
     border: 1px solid #e2e8f0;
@@ -45,6 +46,8 @@
     font-size: 10px;
     font-weight: 700;
 }
+
+/* ===== FORM & INPUT ===== */
 .form-group-edit {
     margin-bottom: 16px;
 }
@@ -93,7 +96,7 @@
     resize: vertical;
 }
 
-/* Grid Layouts */
+/* ===== GRID LAYOUT ===== */
 .grid-2-edit {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -105,7 +108,7 @@
     gap: 16px;
 }
 
-/* Bagian Logo */
+/* ===== UPLOAD LOGO ===== */
 .logo-upload-wrap {
     display: flex;
     align-items: center;
@@ -155,7 +158,7 @@
     gap: 6px;
 }
 
-/* Footer Aksi */
+/* ===== FOOTER & TOMBOL AKSI ===== */
 .edit-footer {
     display: flex;
     justify-content: space-between;
@@ -193,105 +196,8 @@
     align-items: center;
     gap: 8px;
 }
-/* =========================================
-   MODAL KONFIRMASI & TOAST NOTIFIKASI
-   ========================================= */
 
-/* Toast Error/Success */
-.toast-pesan {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    border-radius: 10px;
-    color: white;
-    font-weight: 600;
-    opacity: 0;
-    transition: 0.3s;
-    z-index: 999999;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    pointer-events: none;
-}
-.toast-pesan.show { opacity: 1; pointer-events: auto; }
-.toast-pesan.error { background: #dc2626; }
-.toast-pesan.success { background: #16a34a; }
-
-/* Modal Konfirmasi Styling */
-#modalKonfirmasiSimpan {
-    display: none; /* Hide default */
-    align-items: center;
-    justify-content: center;
-    z-index: 100000;
-}
-.modal-box-konfirmasi {
-    background: white;
-    text-align: center;
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    width: 450px;
-    max-width: 90%;
-}
-.modal-title-konfirmasi {
-    color: #0b301c;
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-    font-weight: 800;
-}
-.modal-desc-konfirmasi {
-    color: #64748b;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-.modal-buttons-konfirmasi {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-.btn-modal-konfirmasi {
-    padding: 12px 30px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 15px;
-    transition: 0.3s;
-}
-.btn-ya-konfirmasi { background: #2D3A2E; color: white; }
-.btn-ya-konfirmasi:hover { background: #1a241a; transform: translateY(-3px); }
-.btn-batal-konfirmasi { background: #f1f5f9; color: #475569; }
-.btn-batal-konfirmasi:hover { background: #e2e8f0; color: #111; }
-
-/* =========================================
-   MODAL KONFIRMASI & TOAST MERAH (BATAL)
-   ========================================= */
-
-/* Toast Merah (Muncul pas batal atau ada error form kosong) */
-.toast-custom {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #ff0000; /* Warna Merah kyak di gambar lu */
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 999999;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-.toast-custom.tampil {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Modal Pop-up Konfirmasi Simpan */
+/* ===== MODAL KONFIRMASI SIMPAN (Ijo & Merah) ===== */
 .modal-overlay-custom {
     display: none;
     position: fixed;
@@ -321,7 +227,7 @@
     gap: 15px;
 }
 .btn-ya-konfirmasi {
-    background-color: #39ff14; /* Ijo ngejreng ala Seed Track */
+    background-color: #39ff14; /* Ijo ngejreng */
     color: #111;
     border: none;
     padding: 10px 35px;
@@ -330,14 +236,67 @@
     font-size: 15px;
     cursor: pointer;
 }
-
+.btn-ya-konfirmasi:hover { opacity: 0.8; }
 .btn-batal-konfirmasi {
-    background-color: #ff0000;
-    color: white;
+    background-color: #ff0000; /* Merah terang */
+    color: black;
     border: none;
     padding: 10px 25px;
     border-radius: 50px;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
+}
+.btn-batal-konfirmasi:hover { opacity: 0.8; }
+
+/* ===== TOOLTIP VALIDASI ORANYE ===== */
+.custom-tooltip-validasi {
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    margin-top: 8px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+    z-index: 100;
+    animation: munculTooltip 0.2s ease-out forwards;
+}
+
+.custom-tooltip-validasi::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    transform: rotate(45deg);
+}
+
+.tooltip-icon {
+    background: #f97316;
+    color: white;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+@keyframes munculTooltip {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

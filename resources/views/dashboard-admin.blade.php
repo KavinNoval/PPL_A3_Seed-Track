@@ -121,9 +121,42 @@
 
         <div class="cards-grid">
             {{-- KARTU 1: TOTAL PENJUALAN --}}
+            {{-- KARTU 1: TOTAL PENJUALAN (DENGAN FILTER) --}}
             <div class="card">
-                <div class="card-title">Total Penjualan</div>
-                <div class="card-subtitle">Bulan Ini</div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                    <div>
+                        <div class="card-title">Total Penjualan</div>
+                        <div class="card-subtitle">{{ request('bulan') || request('tahun') ? 'Data Difilter' : 'Bulan Ini' }}</div>
+                    </div>
+
+                    {{-- Form Filter Otomatis Submit --}}
+                    <form action="{{ route('dashboard.admin') }}" method="GET" style="display: flex; gap: 8px;">
+                        <select name="bulan" onchange="this.form.submit()" style="padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.8rem; outline: none; cursor: pointer;">
+                            <option value="">Semua Bulan</option>
+                            <option value="01" {{ request('bulan') == '01' ? 'selected' : '' }}>Januari</option>
+                            <option value="02" {{ request('bulan') == '02' ? 'selected' : '' }}>Februari</option>
+                            <option value="03" {{ request('bulan') == '03' ? 'selected' : '' }}>Maret</option>
+                            <option value="04" {{ request('bulan') == '04' ? 'selected' : '' }}>April</option>
+                            <option value="05" {{ request('bulan') == '05' ? 'selected' : '' }}>Mei</option>
+                            <option value="06" {{ request('bulan') == '06' ? 'selected' : '' }}>Juni</option>
+                            <option value="07" {{ request('bulan') == '07' ? 'selected' : '' }}>Juli</option>
+                            <option value="08" {{ request('bulan') == '08' ? 'selected' : '' }}>Agustus</option>
+                            <option value="09" {{ request('bulan') == '09' ? 'selected' : '' }}>September</option>
+                            <option value="10" {{ request('bulan') == '10' ? 'selected' : '' }}>Oktober</option>
+                            <option value="11" {{ request('bulan') == '11' ? 'selected' : '' }}>November</option>
+                            <option value="12" {{ request('bulan') == '12' ? 'selected' : '' }}>Desember</option>
+                        </select>
+
+                        <select name="tahun" onchange="this.form.submit()" style="padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.8rem; outline: none; cursor: pointer;">
+                            <option value="">Semua Tahun</option>
+                            @php $tahunSekarang = date('Y'); @endphp
+                            @for($i = $tahunSekarang; $i >= $tahunSekarang - 3; $i--)
+                                <option value="{{ $i }}" {{ request('tahun') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </form>
+                </div>
+
                 <div class="card-value">
                     Rp. {{ number_format($total_penjualan, 0, ',', '.') }}
                     <span class="card-trend {{ $trend_penjualan >= 0 ? 'trend-up' : 'trend-down' }}" style="{{ $trend_penjualan < 0 ? 'color: #dc2626;' : '' }}">

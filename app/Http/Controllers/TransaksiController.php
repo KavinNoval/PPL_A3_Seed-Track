@@ -26,7 +26,8 @@ class TransaksiController extends Controller
                     $q->where('nama_mitra', 'like', '%'.$search.'%');
                 })
                 ->orWhereHas('kios', function ($q) use ($search) {
-                    $q->where('nama_kios', 'like', '%'.$search.'%');
+                    $q->where('nama_kios', 'like', '%'.$search.'%')
+                      ->orWhere('nama_pemilik', 'like', '%'.$search.'%'); // <-- Tambahan search
                 });
         }
 
@@ -49,7 +50,8 @@ class TransaksiController extends Controller
                     $q->where('nama_mitra', 'like', '%'.$search.'%');
                 })
                 ->orWhereHas('kios', function ($q) use ($search) {
-                    $q->where('nama_kios', 'like', '%'.$search.'%');
+                    $q->where('nama_kios', 'like', '%'.$search.'%')
+                      ->orWhere('nama_pemilik', 'like', '%'.$search.'%'); // <-- Tambahan search
                 });
         }
 
@@ -68,7 +70,7 @@ class TransaksiController extends Controller
     }
 
     // ==============================================
-    // PROSES SIMPAN DATA TRANSAKSI (ANTI BAPER)
+    // PROSES SIMPAN DATA TRANSAKSI
     // ==============================================
     public function store(Request $request)
     {
@@ -99,21 +101,22 @@ class TransaksiController extends Controller
                 $no_telp_bersih = substr($no_telp_bersih, 2);
             }
 
-            // Nyari ID Pelanggan (Bisa nemu pake Nama ATAU Nomor Telepon tanpa 0)
+            // Nyari ID Pelanggan (Bisa nemu pake Nama Toko ATAU Nama Pemilik ATAU Nomor Telepon)
             if ($tipe == 'Mitra') {
                 $mitra = Mitra::where('nama_mitra', 'LIKE', '%' . $request->nama_pelanggan . '%')
                               ->orWhere('no_telp', 'LIKE', '%' . $no_telp_bersih . '%')
                               ->first();
                 if (! $mitra) {
-                    throw new \Exception('Data Mitra dengan nama/nomor tersebut tidak ditemukan di database!');
+                    throw new \Exception('Data Mitra dengan nama/nomor tersebut tidak ditemukan di database');
                 }
                 $id_pembeli_fix = $mitra->id_mitra;
             } else {
                 $kios = Kios::where('nama_kios', 'LIKE', '%' . $request->nama_pelanggan . '%')
+                            ->orWhere('nama_pemilik', 'LIKE', '%' . $request->nama_pelanggan . '%') // <-- INI OBATNYA BOSKU!
                             ->orWhere('no_telp', 'LIKE', '%' . $no_telp_bersih . '%')
                             ->first();
                 if (! $kios) {
-                    throw new \Exception('Data Kios dengan nama/nomor tersebut tidak ditemukan di database!');
+                    throw new \Exception('Data Kios dengan nama/nomor tersebut tidak ditemukan di database');
                 }
                 $id_pembeli_fix = $kios->id_kios;
             }
@@ -192,7 +195,7 @@ class TransaksiController extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('success', 'Data transaksi berhasil dihapus!');
+            return redirect()->back()->with('success', 'Data transaksi berhasil dihapus');
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -201,25 +204,22 @@ class TransaksiController extends Controller
     }
 
     // ==============================================
-    // BUKA HALAMAN EDIT TRANSAKSI (UI BARU)
+    // BUKA HALAMAN EDIT TRANSAKSI
     // ==============================================
     public function edit($id)
     {
-        // Tarik data transaksi + detail belanjaannya
         $transaksi = Transaksi::with(['mitra', 'kios', 'detailTransaksi.produk'])->findOrFail($id);
-
-        // Tarik semua produk buat dropdown "Tambah Produk"
         $produks = Produk::all();
 
         if ($transaksi->tipe_pelanggan == 'Mitra') {
             $transaksi->nama_pelanggan = $transaksi->mitra ? $transaksi->mitra->nama_mitra : '';
             $transaksi->no_telp = $transaksi->mitra ? $transaksi->mitra->no_telp : '';
         } else {
-            $transaksi->nama_pelanggan = $transaksi->kios ? $transaksi->kios->nama_kios : '';
+            // Coba ambil nama kios, kalau kosong ambil nama pemiliknya
+            $transaksi->nama_pelanggan = $transaksi->kios ? ($transaksi->kios->nama_kios ?? $transaksi->kios->nama_pemilik) : '';
             $transaksi->no_telp = $transaksi->kios ? $transaksi->kios->no_telp : '';
         }
 
-        // Lempar variabel $produks juga ke view
         return view('edittransaksi', compact('transaksi', 'produks'));
     }
 
@@ -234,9 +234,9 @@ class TransaksiController extends Controller
             'nama_pelanggan' => 'required|string',
             'no_telp'        => 'required',
             'status_bayar'   => 'required|string',
-            'produk'         => 'required|array',     // Wajib ada produk
+            'produk'         => 'required|array',
             'jmlh_beli'      => 'required|array',
-            'total_bayar_input' => 'required|numeric' // Diambil dari JS
+            'total_bayar_input' => 'required|numeric'
         ]);
 
         DB::beginTransaction();
@@ -251,7 +251,6 @@ class TransaksiController extends Controller
             foreach ($oldDetails as $old) {
                 DB::table('data_produk')->where('id_produk', $old->id_produk)->increment('stok', $old->jmlh_beli);
             }
-            // Hapus daftar belanjaan yang lama
             DB::table('detail_transaksi')->where('id_transaksi', $id)->delete();
 
             // 2. BERSIHIN NOMOR TELEPON
@@ -266,12 +265,13 @@ class TransaksiController extends Controller
             if ($tipe == 'Mitra') {
                 $mitra = Mitra::where('nama_mitra', 'LIKE', '%' . $request->nama_pelanggan . '%')
                               ->orWhere('no_telp', 'LIKE', '%' . $no_telp_bersih . '%')->first();
-                if (! $mitra) throw new \Exception('Data Mitra tidak ditemukan!');
+                if (! $mitra) throw new \Exception('Data Mitra tidak ditemukan');
                 $id_pembeli_fix = $mitra->id_mitra;
             } else {
                 $kios = Kios::where('nama_kios', 'LIKE', '%' . $request->nama_pelanggan . '%')
+                            ->orWhere('nama_pemilik', 'LIKE', '%' . $request->nama_pelanggan . '%') // <-- INI OBATNYA BOSKU!
                             ->orWhere('no_telp', 'LIKE', '%' . $no_telp_bersih . '%')->first();
-                if (! $kios) throw new \Exception('Data Kios tidak ditemukan!');
+                if (! $kios) throw new \Exception('Data Kios tidak ditemukan');
                 $id_pembeli_fix = $kios->id_kios;
             }
 
@@ -307,7 +307,7 @@ class TransaksiController extends Controller
             DB::table('detail_transaksi')->insert($detailData);
 
             DB::commit();
-            return redirect()->route('transaksi.index')->with('success', 'Data transaksi berhasil diubah!');
+            return redirect()->route('transaksi.index')->with('success', 'Data transaksi berhasil diubah');
 
         } catch (\Exception $e) {
             DB::rollBack();

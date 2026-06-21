@@ -13,7 +13,6 @@ use App\Http\Controllers\PengeluaranController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landing.publik');
 
-
 Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -27,6 +26,23 @@ Route::middleware('guest')->group(function () {
 // Middleware untuk User yang sudah login (Auth)
 Route::middleware('auth')->group(function () {
 
+    // --- DASHBOARD PENGATUR LALU LINTAS (SMART REDIRECT) ---
+    Route::get('/dashboard', function () {
+        $role = Illuminate\Support\Facades\Auth::user()->role;
+
+        if ($role == 'Admin') {
+            return redirect()->route('dashboard.admin');
+        } elseif ($role == 'Staff Gudang' || $role == 'Staf Gudang') {
+            return redirect()->route('dashboard.gudang');
+        } elseif ($role == 'Staff Lapang' || $role == 'Staf Lapang') {
+            return redirect()->route('dashboard.lapang');
+        }
+
+        // Jaga-jaga kalau role-nya aneh
+        return redirect('/');
+    })->name('dashboard');
+
+    // --- DASHBOARD ADMIN ---
     Route::get('/dashboard-admin', [DashboardController::class, 'indexAdmin'])->name('dashboard.admin');
 
     // List Data (Read)
@@ -106,29 +122,18 @@ Route::middleware('auth')->group(function () {
 
     // --- STAF GUDANG SECTION ---
     Route::get('/dashboard-gudang', [DashboardController::class, 'indexGudang'])->name('dashboard.gudang');
-    Route::get('/staf-gudang/data-kios', [ControllerStaf::class, 'dataKiosGudang'])->name('kios.gudang');
+    Route::get('/staf-gudang/data-kios', [DashboardController::class, 'kiosGudang'])->name('kios.gudang');
     Route::get('/staf-gudang/transaksi', [TransaksiController::class, 'tampilTransaksiStaf'])->name('transaksi.staf'); // Buat Staf
     Route::get('/staf-gudang/produk', [ProdukController::class, 'index'])->name('produk.staf');
-
-    // Rute buat Pengeluaran Gudang
     Route::get('/staf-gudang/pengeluaran', [PengeluaranController::class, 'indexGudang'])->name('pengeluaran.gudang');
 
-    // --- DASHBOARD DEFAULT & LOGOUT ---
-    Route::get('/dashboard', function () {
-        return view('dashboard-admin');
-    })->name('dashboard');
-
+    // --- LOGOUT ---
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // 1. Nampilin halaman Profil (Buka halaman ijo elegan)
+    // --- PROFIL PERUSAHAAN (ADMIN) ---
     Route::get('/admin/profil-perusahaan', [LandingPageController::class, 'profilAdmin'])->name('profil.perusahaan');
-
-    // 2. Nampilin form Edit Profil (Buka form putih)
     Route::get('/admin/profil-perusahaan/edit', [LandingPageController::class, 'editProfil'])->name('profil.edit');
-
-    // 3. Proses simpan ke database
     Route::post('/admin/profil-perusahaan/update', [LandingPageController::class, 'updateProfil'])->name('profil.update');
-
 
     // --- PENGELUARAN SECTION (ADMIN) ---
     Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
@@ -136,8 +141,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/tambah-pengeluaran', [PengeluaranController::class, 'create'])->name('pengeluaran.tambah');
     Route::post('/tambah-pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
     Route::delete('/pengeluaran/hapus/{id}', [PengeluaranController::class, 'destroy'])->name('pengeluaran.hapus');
-
-    // 👇 INI DIA TAMBAHAN RUTE EDIT & UPDATE PENGELUARAN 👇
     Route::get('/pengeluaran/edit/{id}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
     Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
 
